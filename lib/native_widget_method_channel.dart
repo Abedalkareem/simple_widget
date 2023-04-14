@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'models/app_widget_data.dart';
+import 'models/timeline.dart';
 import 'native_widget_platform_interface.dart';
 
 /// An implementation of [NativeWidgetPlatform] that uses method channels.
@@ -22,7 +22,7 @@ class MethodChannelNativeWidget extends NativeWidgetPlatform {
   }
 
   @override
-  Future updateWidgets(List<AppWidgetData> list) async {
+  Future updateWidgets(List<TimeLine> list) async {
     final data = jsonEncode(list.map((item) => item.toJson()).toList());
     final version = await methodChannel.invokeMethod("updateWidgets", data);
     return version;

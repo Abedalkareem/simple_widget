@@ -1,4 +1,4 @@
-import 'models/app_widget_data.dart';
+import 'models/timeline.dart';
 import 'native_widget_platform_interface.dart';
 
 class NativeWidget {
@@ -9,7 +9,7 @@ class NativeWidget {
   }
 
   /// Update the widgets with the given list.
-  Future updateWidgets(List<AppWidgetData> list) {
+  Future updateWidgets(List<TimeLine> list) {
     return NativeWidgetPlatform.instance.updateWidgets(list);
   }
 

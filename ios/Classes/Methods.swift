@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Method: String {
+enum Methods: String {
   case updateWidgets
   case refreshWidgets
   case setGroupID

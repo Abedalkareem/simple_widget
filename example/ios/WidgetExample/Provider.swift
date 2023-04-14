@@ -10,7 +10,7 @@ import WidgetKit
 struct Provider: IntentTimelineProvider {
 
   func placeholder(in context: Context) -> AppWidgetEntry {
-    if let widget = AppUserDefaults.shared.getWidgets().first {
+    if let widget = AppUserDefaults.shared.getTimelines().first?.data.first {
       let entry = AppWidgetEntry(date: Date(), configuration: SelectWidgetIntent(), appWidgetData: widget)
       return entry
     } else {
@@ -19,7 +19,7 @@ struct Provider: IntentTimelineProvider {
   }
 
   func getSnapshot(for configuration: SelectWidgetIntent, in context: Context, completion: @escaping (AppWidgetEntry) -> ()) {
-    if let widget = AppUserDefaults.shared.getWidgets().first {
+    if let widget = AppUserDefaults.shared.getTimelines().first?.data.first {
       let entry = AppWidgetEntry(date: Date(), configuration: configuration, appWidgetData: widget)
       completion(entry)
     } else {
@@ -30,24 +30,17 @@ struct Provider: IntentTimelineProvider {
   func getTimeline(for configuration: SelectWidgetIntent, in context: Context, completion: @escaping (Timeline<AppWidgetEntry>) -> ()) {
     var entries: [AppWidgetEntry] = []
 
-    // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-    //    let currentDate = Date()
-    //    for hourOffset in 0 ..< 5 {
-    //      let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-    //      let entry = AppWidgetEntry(date: entryDate, configuration: configuration)
-    //      entries.append(entry)
-    //    }
 
     let type = configuration.type?.type
+    let timelineData = AppUserDefaults.shared.getTimelines().first(where: { $0.type == type }) ?? AppUserDefaults.shared.getTimelines().first
+    // Generate a timeline consisting of five entries an hour apart, starting from the current date.
 
-    let entry = AppUserDefaults.shared.getWidgets().first(where: { $0.id == type }).map { data in
-      AppWidgetEntry(date: Date(), configuration: configuration, appWidgetData: data)
-    } ?? AppUserDefaults.shared.getWidgets().first.map({ data in
-      AppWidgetEntry(date: Date(), configuration: configuration, appWidgetData: data)
-    })
-
-    if let entry {
-      entries.append(entry)
+    if let timelineData {
+      for widget in timelineData.data {
+        let entryDate = Date(timeIntervalSince1970: TimeInterval(widget.date / 1000))
+        let entry = AppWidgetEntry(date: entryDate, configuration: configuration, appWidgetData: widget)
+        entries.append(entry)
+      }
     }
 
     let timeline = Timeline(entries: entries, policy: .atEnd)
@@ -55,7 +48,7 @@ struct Provider: IntentTimelineProvider {
   }
 
   private func emptyWidgetEntry() -> AppWidgetEntry {
-    return AppWidgetEntry(date: Date(), configuration: SelectWidgetIntent(), appWidgetData: AppWidgetData(id: "", background: "", foreground: ""))
+    return AppWidgetEntry(date: Date(), configuration: SelectWidgetIntent(), appWidgetData: AppWidgetData(date: Int(Date().timeIntervalSince1970), id: "", background: "", foreground: ""))
   }
 }
 
@@ -65,7 +58,14 @@ struct AppWidgetEntry: TimelineEntry {
   let appWidgetData: AppWidgetData
 }
 
+struct TimelineData: Codable {
+  let id: String
+  let type: String
+  let data: [AppWidgetData]
+}
+
 struct AppWidgetData: Codable {
+  let date: Int
   let id: String
   let background: String
   let foreground: String

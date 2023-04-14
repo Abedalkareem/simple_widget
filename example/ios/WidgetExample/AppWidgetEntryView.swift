@@ -40,7 +40,7 @@ struct AppWidgetEntryView : View {
 
 struct WidgetExample_Previews: PreviewProvider {
   static var previews: some View {
-    AppWidgetEntryView(entry: AppWidgetEntry(date: Date(), configuration:  SelectWidgetIntent(), appWidgetData: AppWidgetData(id: "", background: "", foreground: "")))
+    AppWidgetEntryView(entry: AppWidgetEntry(date: Date(), configuration:  SelectWidgetIntent(), appWidgetData: AppWidgetData(date: 55, id: "", background: "", foreground: "")))
       .previewContext(WidgetPreviewContext(family: .systemSmall))
   }
 }

@@ -1,6 +1,7 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'models/app_widget_data.dart';
+import 'models/timeline.dart';
 import 'native_widget_method_channel.dart';
 
 abstract class NativeWidgetPlatform extends PlatformInterface {
@@ -28,7 +29,7 @@ abstract class NativeWidgetPlatform extends PlatformInterface {
     throw UnimplementedError('widgetClicked has not been implemented.');
   }
 
-  Future updateWidgets(List<AppWidgetData> list) {
+  Future updateWidgets(List<TimeLine> list) {
     throw UnimplementedError('updateWidgets() has not been implemented.');
   }
 

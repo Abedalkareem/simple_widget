@@ -19,7 +19,7 @@ class AppUserDefaults {
 
   private let userDefaults: UserDefaults?
 
-  private let key = "AppWidgetsData"
+  private let key = "TimelineData"
 
   // MARK: - init
 

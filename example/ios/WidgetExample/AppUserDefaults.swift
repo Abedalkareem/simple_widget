@@ -19,6 +19,8 @@ class AppUserDefaults {
 
   private let userDefaults: UserDefaults?
 
+  private let key = "TimelineData"
+
   // MARK: - init
 
   init() {
@@ -27,12 +29,12 @@ class AppUserDefaults {
 
   // MARK: -
   
-  func getWidgets() -> [AppWidgetData] {
-    let value = userDefaults?.string(forKey: "AppWidgetsData") ?? ""
+  func getTimelines() -> [TimelineData] {
+    let value = userDefaults?.string(forKey: key) ?? ""
     let decoder = JSONDecoder()
     do {
       let jsonData = Data(value.utf8)
-      let appWidgetData = try decoder.decode([AppWidgetData].self, from: jsonData)
+      let appWidgetData = try decoder.decode([TimelineData].self, from: jsonData)
       return appWidgetData
     } catch {
       print(error.localizedDescription)

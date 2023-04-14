@@ -24,12 +24,12 @@ public class NativeWidgetPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
 
-    guard let method = Method(rawValue: call.method) else {
+    guard let method = Methods(rawValue: call.method) else {
       result(Errors.notImplemented)
       return
     }
 
-    switch method{
+    switch method {
     case .updateWidgets:
       guard let arguments = call.arguments as? String else {
         result(Errors.wrongArguments)

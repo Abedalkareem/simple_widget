@@ -20,12 +20,21 @@ class AppWidgetProvider : AppWidgetProvider() {
     appWidgetManager: AppWidgetManager,
     appWidgetIds: IntArray
   ) {
-    val allWidgets = AppSharedPreferences.getWidgets(context)
+    val allTimelines = AppSharedPreferences.getTimelines(context)
     appWidgetIds.forEach { widgetId ->
-      var widgetToShow = allWidgets.firstOrNull()
-      val widgetWithID = allWidgets.firstOrNull { it.id == "$widgetId" }
-      if (widgetWithID != null) {
-        widgetToShow = widgetWithID
+      var timeline = allTimelines.lastOrNull()
+      val timelineWithID = allTimelines.firstOrNull { it.id == "$widgetId" }
+      if (timelineWithID != null) {
+        timeline = timelineWithID
+      }
+      if (timeline == null) {
+        return
+      }
+      val timelineData = timeline.data.sortedBy { it.date }
+      val widgetToShow = timelineData.lastOrNull {
+        val currentTime = System.currentTimeMillis()
+        val widgetTime = it.date
+        return@lastOrNull widgetTime <= currentTime
       }
       val views = RemoteViews(context.packageName, R.layout.widget_layout).apply {
 
@@ -42,7 +51,7 @@ class AppWidgetProvider : AppWidgetProvider() {
         )
 
         // Open App on Widget Click
-        val pendingIntent = HomeWidgetLaunchIntent.getActivity(
+        val pendingIntent = getActivity(
           context,
           MainActivity::class.java,
           Uri.parse("${Settings.appScheme}://data?id=$widgetId")
@@ -58,12 +67,8 @@ class AppWidgetProvider : AppWidgetProvider() {
     val decodedString = Base64.decode(base64, Base64.DEFAULT)
     return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
   }
-}
 
-object HomeWidgetLaunchIntent {
-
-
-  fun <T> getActivity(
+  private fun <T> getActivity(
     context: Context,
     activityClass: Class<T>,
     uri: Uri? = null

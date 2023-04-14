@@ -6,12 +6,15 @@ import com.google.gson.reflect.TypeToken
 
 object AppSharedPreferences {
 
-  private const val key = "AppWidgetsData"
+  private const val key = "TimelineData"
 
-  fun getWidgets(context: Context): List<AppWidgetData> {
-    val widgetData = context.getSharedPreferences("AppWidgetsData", Context.MODE_PRIVATE)
+  fun getTimelines(context: Context): List<TimelineData> {
+    val widgetData = context.getSharedPreferences(key, Context.MODE_PRIVATE)
     val value = widgetData.getString("data", "")
-    val typeToken = object : TypeToken<List<AppWidgetData>>() {}.type
+    val typeToken = object : TypeToken<List<TimelineData>>() {}.type
+    if (value?.isEmpty() != false) {
+      return listOf()
+    }
     return Gson().fromJson(value, typeToken)
   }
 }
