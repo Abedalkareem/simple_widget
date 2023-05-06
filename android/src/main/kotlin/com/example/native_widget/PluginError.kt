@@ -41,7 +41,7 @@ fun PluginError.details(): String {
       "Method not implemented"
     }
     PluginError.NoWidgetFound -> {
-      "No widget found, Make sure you added the `AppWidgetProvider` in your app"
+      "No widget found, Make sure you added the `NativeWidgetProvider` in your app"
     }
   }
 }

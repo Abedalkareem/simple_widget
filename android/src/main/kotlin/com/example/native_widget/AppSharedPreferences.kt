@@ -12,4 +12,9 @@ object AppSharedPreferences {
     editor.putString("data", string)
     editor.apply()
   }
+
+  fun getTimelinesData(context: Context): String? {
+    val sharedPreference =  context.getSharedPreferences(key, Context.MODE_PRIVATE)
+    return sharedPreference.getString("data", null)
+  }
 }

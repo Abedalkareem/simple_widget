@@ -17,7 +17,7 @@ class IntentHandler: INExtension, SelectWidgetIntentHandling {
 
   func provideTypeOptionsCollection(for intent: SelectWidgetIntent, with completion: @escaping (INObjectCollection<WidgetTypeObject>?, Error?) -> Void) {
 
-    let widgets: [WidgetTypeObject] = AppUserDefaults.shared.getTimelines().map({
+    let widgets: [WidgetTypeObject] = Storage.shared.getTimelines().map({
       let obj = WidgetTypeObject(identifier: $0.id, display: $0.type)
       obj.type = $0.type
       obj.name = $0.type

@@ -1,6 +1,5 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'models/app_widget_data.dart';
 import 'models/timeline.dart';
 import 'native_widget_method_channel.dart';
 
@@ -33,6 +32,10 @@ abstract class NativeWidgetPlatform extends PlatformInterface {
     throw UnimplementedError('updateWidgets() has not been implemented.');
   }
 
+  Future<List<TimeLine>> getTimelinesData() {
+    throw UnimplementedError('updateWidgets() has not been implemented.');
+  }
+
   Future refresh() async {
     throw UnimplementedError('refresh() has not been implemented.');
   }
@@ -41,7 +44,7 @@ abstract class NativeWidgetPlatform extends PlatformInterface {
     throw UnimplementedError('setGroupID() has not been implemented.');
   }
 
-  Future<String?> getLaunchedURL() async {
+  Future<Uri?> getLaunchedURL() async {
     throw UnimplementedError('getLaunchedURL() has not been implemented.');
   }
 

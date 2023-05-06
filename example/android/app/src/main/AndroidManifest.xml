@@ -26,8 +26,8 @@
             </intent-filter>
         </activity>
 
-       <receiver android:name="AppWidgetProvider"
-           android:exported="true">
+       <receiver android:name="NativeWidgetProvider"
+           android:exported="false">
            <intent-filter>
                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
            </intent-filter>

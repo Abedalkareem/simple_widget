@@ -14,6 +14,11 @@
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		99F76B6923BC9398977D91CB /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BAAD809E46233181F8B3F5 /* Pods_Runner.framework */; };
+		C6A63B902A06E00D00CA588C /* AppWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F354D329E2FA7700D4F462 /* AppWidgetBundle.swift */; };
+		C6A63B912A06E00F00CA588C /* AppWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F354E429E2FBB800D4F462 /* AppWidget.swift */; };
+		C6A63B922A06E01300CA588C /* AppWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F354D529E2FA7700D4F462 /* AppWidgetEntryView.swift */; };
+		C6A63BA92A06E09C00CA588C /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A63B9E2A06E09C00CA588C /* Storage.swift */; };
+		C6A63BAA2A06E09C00CA588C /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A63B9E2A06E09C00CA588C /* Storage.swift */; };
 		C6F354D029E2FA7700D4F462 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F354B229E2F99C00D4F462 /* WidgetKit.framework */; };
 		C6F354D129E2FA7700D4F462 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F354B429E2F99D00D4F462 /* SwiftUI.framework */; };
 		C6F354D429E2FA7700D4F462 /* AppWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F354D329E2FA7700D4F462 /* AppWidgetBundle.swift */; };
@@ -24,13 +29,11 @@
 		C6F354DF29E2FA7B00D4F462 /* WidgetExampleExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C6F354CF29E2FA7700D4F462 /* WidgetExampleExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C6F354E529E2FBB800D4F462 /* AppWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F354E429E2FBB800D4F462 /* AppWidget.swift */; };
 		C6F354E729E2FCFA00D4F462 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F354E629E2FCFA00D4F462 /* Provider.swift */; };
-		C6F354EA29E3045800D4F462 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F354E929E3045800D4F462 /* AppUserDefaults.swift */; };
 		C6F354EC29E3207C00D4F462 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F354EB29E3207C00D4F462 /* Settings.swift */; };
 		C6F354FC29E3445000D4F462 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F354FB29E3445000D4F462 /* Intents.framework */; };
 		C6F354FF29E3445100D4F462 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F354FE29E3445100D4F462 /* IntentHandler.swift */; };
 		C6F3550329E3445100D4F462 /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C6F354FA29E3445000D4F462 /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C6F3550829E3446D00D4F462 /* WidgetExample.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C6F354D729E2FA7700D4F462 /* WidgetExample.intentdefinition */; };
-		C6F3550929E3447A00D4F462 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F354E929E3045800D4F462 /* AppUserDefaults.swift */; };
 		C6F3550A29E3448500D4F462 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F354E629E2FCFA00D4F462 /* Provider.swift */; };
 		C6F3550B29E3448E00D4F462 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F354EB29E3207C00D4F462 /* Settings.swift */; };
 /* End PBXBuildFile section */
@@ -94,6 +97,7 @@
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7E8D3599E99F61177CC36AB /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		C4C8248BA0689565FCC204AC /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		C6A63B9E2A06E09C00CA588C /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		C6F354B229E2F99C00D4F462 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C6F354B429E2F99D00D4F462 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		C6F354CF29E2FA7700D4F462 /* WidgetExampleExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExampleExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +108,6 @@
 		C6F354DA29E2FA7B00D4F462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6F354E429E2FBB800D4F462 /* AppWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWidget.swift; sourceTree = "<group>"; };
 		C6F354E629E2FCFA00D4F462 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
-		C6F354E929E3045800D4F462 /* AppUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
 		C6F354EB29E3207C00D4F462 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C6F354F129E332D900D4F462 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		C6F354F229E332E000D4F462 /* WidgetExampleExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetExampleExtension.entitlements; sourceTree = "<group>"; };
@@ -209,12 +212,12 @@
 		C6F354D229E2FA7700D4F462 /* WidgetExample */ = {
 			isa = PBXGroup;
 			children = (
-				C6F354E929E3045800D4F462 /* AppUserDefaults.swift */,
 				C6F354D329E2FA7700D4F462 /* AppWidgetBundle.swift */,
 				C6F354E429E2FBB800D4F462 /* AppWidget.swift */,
 				C6F354E629E2FCFA00D4F462 /* Provider.swift */,
 				C6F354D529E2FA7700D4F462 /* AppWidgetEntryView.swift */,
 				C6F354EB29E3207C00D4F462 /* Settings.swift */,
+				C6A63B9E2A06E09C00CA588C /* Storage.swift */,
 				C6F354D729E2FA7700D4F462 /* WidgetExample.intentdefinition */,
 				C6F354D829E2FA7B00D4F462 /* Assets.xcassets */,
 				C6F354DA29E2FA7B00D4F462 /* Info.plist */,
@@ -468,8 +471,8 @@
 				C6F354D429E2FA7700D4F462 /* AppWidgetBundle.swift in Sources */,
 				C6F354E729E2FCFA00D4F462 /* Provider.swift in Sources */,
 				C6F354EC29E3207C00D4F462 /* Settings.swift in Sources */,
-				C6F354EA29E3045800D4F462 /* AppUserDefaults.swift in Sources */,
 				C6F354E529E2FBB800D4F462 /* AppWidget.swift in Sources */,
+				C6A63BA92A06E09C00CA588C /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,10 +481,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6F3550A29E3448500D4F462 /* Provider.swift in Sources */,
+				C6A63BAA2A06E09C00CA588C /* Storage.swift in Sources */,
 				C6F354FF29E3445100D4F462 /* IntentHandler.swift in Sources */,
-				C6F3550929E3447A00D4F462 /* AppUserDefaults.swift in Sources */,
+				C6A63B902A06E00D00CA588C /* AppWidgetBundle.swift in Sources */,
 				C6F3550829E3446D00D4F462 /* WidgetExample.intentdefinition in Sources */,
+				C6A63B922A06E01300CA588C /* AppWidgetEntryView.swift in Sources */,
 				C6F3550B29E3448E00D4F462 /* Settings.swift in Sources */,
+				C6A63B912A06E00F00CA588C /* AppWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

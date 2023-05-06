@@ -29,6 +29,17 @@ class MethodChannelNativeWidget extends NativeWidgetPlatform {
   }
 
   @override
+  Future<List<TimeLine>> getTimelinesData() async {
+    final result = await methodChannel.invokeMethod("getTimelinesData");
+    if (result == null) {
+      return [];
+    }
+    final List jsonArray = jsonDecode(result);
+    final timelines = jsonArray.map((json) => TimeLine.fromJson(json)).toList();
+    return timelines;
+  }
+
+  @override
   Future refresh() async {
     final version = await methodChannel.invokeMethod("refreshWidgets");
     return version;
@@ -40,8 +51,9 @@ class MethodChannelNativeWidget extends NativeWidgetPlatform {
   }
 
   @override
-  Future<String?> getLaunchedURL() async {
-    return await methodChannel.invokeMethod("getLaunchedURL");
+  Future<Uri?> getLaunchedURL() async {
+    final link = await methodChannel.invokeMethod("getLaunchedURL") ?? "";
+    return Uri.tryParse(link);
   }
 
   @override

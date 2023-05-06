@@ -35,8 +35,10 @@ public class NativeWidgetPlugin: NSObject, FlutterPlugin {
         result(Errors.wrongArguments)
         return
       }
-      AppUserDefaults.shared.save(arguments)
+      Storage.shared.save(arguments)
       result(nil)
+    case .getTimelinesData:
+      result(Storage.shared.getTimelinesData())
     case .refreshWidgets:
       if #available(iOS 14.0, *) {
         WidgetCenter.shared.reloadAllTimelines()

@@ -1,11 +1,10 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:native_widget/models/app_widget_data.dart';
-import 'package:native_widget/models/timeline.dart';
 import 'package:native_widget/native_widget.dart';
-import 'package:native_widget/util/widget_to_image.dart';
+import 'package:native_widget_example/game_widget_example.dart';
+import 'package:native_widget_example/multiple_types_example.dart';
+import 'package:native_widget_example/one_widget_example.dart';
+import 'package:native_widget_example/update_widget_screen.dart';
+import 'package:native_widget_example/widget_from_screen_example.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +36,18 @@ class _MyAppState extends State<MyApp> {
   void _listenForWidgetClicked() {
     _nativeWidgetPlugin.widgetClicked.listen((event) async {
       debugPrint(event.toString());
-      final id = event?.queryParameters["id"];
+      final id = event?.queryParameters[
+          "id"]; // You can use this id to update the home widget on android.
+      // if (Platform.isAndroid) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => UpdateWidgetScreen(
+            id: id ?? "--",
+          ),
+        ),
+      );
+      // }
       debugPrint(id);
     });
   }
@@ -51,193 +61,106 @@ class _MyAppState extends State<MyApp> {
           color: Colors.red,
         ),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Native widget example'),
+      home: const HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _nativeWidgetPlugin = NativeWidget();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _setup();
+  }
+
+  void _setup() async {
+    await _nativeWidgetPlugin.setGroupID("group.abedalkareem.widgets");
+    await _nativeWidgetPlugin.setAppScheme("widgets");
+    _listenForWidgetClicked();
+  }
+
+  void _listenForWidgetClicked() {
+    _nativeWidgetPlugin.widgetClicked.listen((event) async {
+      debugPrint(event.toString());
+      final id = event?.queryParameters[
+          "id"]; // You can use this id to update the home widget on android.
+      // if (Platform.isAndroid) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => UpdateWidgetScreen(
+            id: id ?? "--",
+          ),
         ),
-        body: Center(
-            child: Column(
+      );
+      // }
+      debugPrint(id);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Native widget example'),
+      ),
+      body: Center(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton(
               onPressed: () async {
-                _updateWidgets();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MultipleTypesExample()),
+                );
               },
-              child: const Text("Update Widgets"),
+              child: const Text("Multiple types example"),
             ),
             ElevatedButton(
               onPressed: () async {
-                _refreshWidgets();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const OneWidgetExample()),
+                );
               },
-              child: const Text("Refresh Widgets"),
+              child: const Text("One widget example"),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const WidgetFromScreenExample()),
+                );
+              },
+              child: const Text("Widget from screen example"),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const GameWidgetExample()),
+                );
+              },
+              child: const Text("Game widget example"),
             ),
           ],
-        )),
-      ),
-    );
-  }
-
-  void _refreshWidgets() async {
-    await _nativeWidgetPlugin.refresh();
-  }
-
-  Future<void> _updateWidgets() async {
-    const firstTimelineID = "1";
-    const secondTimelineID = "1";
-
-    final firstTimeline = await _getFirstTimeline(firstTimelineID);
-    final secondTimeline = await _getSecondTimeline(secondTimelineID);
-    await _nativeWidgetPlugin.updateWidgets(
-      [
-        TimeLine(type: "Images", id: firstTimelineID, data: firstTimeline),
-        TimeLine(type: "Color", id: secondTimelineID, data: secondTimeline),
-      ],
-    );
-    await _nativeWidgetPlugin.refresh();
-  }
-
-  Future<List<AppWidgetData>> _getFirstTimeline(String id) async {
-    final background1 = await imageBackground("assets/images/cat.jpg");
-    final foreground1 = await forground("Native Widget");
-    final background2 = await imageBackground("assets/images/city.png");
-    final foreground2 = await forground("Hello Flutter");
-    final background3 = await imageBackground("assets/images/green.png");
-    final foreground3 = await forground("Hello World");
-    final date = DateTime.now();
-    return [
-      AppWidgetData(
-        date.add(const Duration(hours: 1)).millisecondsSinceEpoch,
-        id,
-        background1,
-        foreground1,
-      ),
-      AppWidgetData(
-        date.add(const Duration(hours: 2)).millisecondsSinceEpoch,
-        id,
-        background2,
-        foreground2,
-      ),
-      AppWidgetData(
-        date.add(const Duration(hours: 3)).millisecondsSinceEpoch,
-        id,
-        background3,
-        foreground3,
-      )
-    ];
-  }
-
-  Future<List<AppWidgetData>> _getSecondTimeline(String id) async {
-    final background1 = await colorBackground(Colors.red);
-    final foreground1 = await forground("Native Widget");
-    final background2 = await colorBackground(Colors.blue);
-    final foreground2 = await forground("Hello Flutter");
-    final background3 = await colorBackground(Colors.green);
-    final foreground3 = await forground("Hello World");
-    final date = DateTime.now();
-    return [
-      AppWidgetData(
-        date.add(const Duration(minutes: 0)).millisecondsSinceEpoch,
-        id,
-        background1,
-        foreground1,
-      ),
-      AppWidgetData(
-        date.add(const Duration(minutes: 35)).millisecondsSinceEpoch,
-        id,
-        background2,
-        foreground2,
-      ),
-      AppWidgetData(
-        date.add(const Duration(minutes: 70)).millisecondsSinceEpoch,
-        id,
-        background3,
-        foreground3,
-      )
-    ];
-  }
-
-  Future<String> imageBackground(String image) async {
-    final background = await WidgetToImage.dataFromWidget(
-      Directionality(
-        textDirection: TextDirection.ltr,
-        child: SizedBox(
-          width: 500,
-          height: 250,
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: Image.asset(
-                  image,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Positioned.fill(
-                child: Container(
-                  color: Colors.black.withOpacity(0.4),
-                ),
-              )
-            ],
-          ),
         ),
       ),
     );
-    String base64Image = base64Encode(background!);
-
-    return base64Image;
-  }
-
-  Future<String> colorBackground(Color color) async {
-    final background = await WidgetToImage.dataFromWidget(
-      Directionality(
-        textDirection: TextDirection.ltr,
-        child: SizedBox(
-          width: 500,
-          height: 250,
-          child: Container(
-            color: color,
-            width: 500,
-            height: 250,
-          ),
-        ),
-      ),
-    );
-    String base64Image = base64Encode(background!);
-
-    return base64Image;
-  }
-
-  Future<String> forground(String text) async {
-    final background = await WidgetToImage.dataFromWidget(
-      SizedBox(
-        width: 500,
-        height: 250,
-        child: Directionality(
-          textDirection: TextDirection.ltr,
-          child: Column(
-            children: [
-              const Spacer(),
-              Row(
-                children: [
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Text(
-                      text,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 50,
-                        fontFamily: "Michelia",
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-    String base64Image = base64Encode(background!);
-    return base64Image;
   }
 }

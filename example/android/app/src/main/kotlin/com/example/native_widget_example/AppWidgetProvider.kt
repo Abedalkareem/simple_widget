@@ -13,41 +13,43 @@ import android.os.Build
 import android.util.Base64
 import android.widget.RemoteViews
 
-class AppWidgetProvider : AppWidgetProvider() {
+class NativeWidgetProvider : AppWidgetProvider() {
 
   override fun onUpdate(
     context: Context,
     appWidgetManager: AppWidgetManager,
     appWidgetIds: IntArray
   ) {
+    super.onUpdate(context, appWidgetManager, appWidgetIds)
     val allTimelines = AppSharedPreferences.getTimelines(context)
+
     appWidgetIds.forEach { widgetId ->
-      var timeline = allTimelines.lastOrNull()
+      var timeline = allTimelines.firstOrNull()
       val timelineWithID = allTimelines.firstOrNull { it.id == "$widgetId" }
       if (timelineWithID != null) {
         timeline = timelineWithID
       }
       if (timeline == null) {
-        return
+        return@forEach
       }
       val timelineData = timeline.data.sortedBy { it.date }
       val widgetToShow = timelineData.lastOrNull {
         val currentTime = System.currentTimeMillis()
         val widgetTime = it.date
         return@lastOrNull widgetTime <= currentTime
-      }
+      } ?: return@forEach
       val views = RemoteViews(context.packageName, R.layout.widget_layout).apply {
 
         // Set the widget background
         setImageViewBitmap(
           R.id.backgroundImageView,
-          base64ToBitmap(widgetToShow?.background ?: "")
+          base64ToBitmap(widgetToShow.background ?: "")
         )
 
         // Set the widget foreground
         setImageViewBitmap(
           R.id.foregroundImageView,
-          base64ToBitmap(widgetToShow?.foreground ?: "")
+          base64ToBitmap(widgetToShow.foreground ?: "")
         )
 
         // Open App on Widget Click
@@ -61,6 +63,10 @@ class AppWidgetProvider : AppWidgetProvider() {
 
       appWidgetManager.updateAppWidget(widgetId, views)
     }
+  }
+
+  override fun onReceive(context: Context?, intent: Intent?) {
+    super.onReceive(context, intent)
   }
 
   private fun base64ToBitmap(base64: String): Bitmap {

@@ -1,4 +1,4 @@
-package com.example.native_widget_example
+package com.jordanstudio.widget_maker
 
 import android.content.Context
 import com.google.gson.Gson

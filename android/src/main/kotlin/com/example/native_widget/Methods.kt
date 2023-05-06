@@ -1,7 +1,7 @@
 package com.example.native_widget
 
 enum class Method {
-  UpdateWidgets, RefreshWidgets, SetGroupID, GetLaunchedURL, SetAppScheme
+  UpdateWidgets, RefreshWidgets, SetGroupID, GetLaunchedURL, SetAppScheme, GetTimelinesData
 }
 
 fun Method.value(): String {

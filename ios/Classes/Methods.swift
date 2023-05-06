@@ -13,4 +13,5 @@ enum Methods: String {
   case setGroupID
   case getLaunchedURL
   case setAppScheme
+  case getTimelinesData
 }

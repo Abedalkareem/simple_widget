@@ -71,6 +71,9 @@ flutter:
     - family: Michelia
       fonts:
         - asset: assets/fonts/michelia.otf
+    - family: 04B03
+      fonts:
+        - asset: assets/fonts/04B03.TTF
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

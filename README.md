@@ -6,22 +6,28 @@
 
 <center><img src="images/native_widget.png" width="300"/></center>
 
-Create a native home widget with flutter widgets!
+Create a native timelined home widget with flutter widgets!
 
-## Screenshot  
-#### iOS  
+## Screenshots  
+### iOS  
 
-#### Android  
+<center><img src="images/ios_screenshot_1.png" width="200"/> <img src="images/ios_screenshot_2.png" width="200"/></center>
 
-## Tutorials  
+### Android  
 
-[Written tutorial]()  
+<center><img src="images/android_screenshot_1.png" width="200"/> <img src="images/android_screenshot_2.png" width="200"/></center>
+
+## Apps used this plugin
+You can check these apps to have an idea about how this plugin can be used:
+- Widget Maker [iOS](https://apps.apple.com/sa/app/widget-maker-create-widgets/id6448733153) [Android](https://play.google.com/store/apps/details?id=com.jordanstudio.widget_maker)
 
 ## Getting Started
 
-### iOS Setup
+Please check the docs folder.
 
-### Android Setup
+## How does it work?
+
+This plugin is for you if you want to create a timelined widgets, timelined widgets are calucated and provided to the system ahead of time. And you will be feeding the plugin with base64 images created from your Flutter widgets.
 
 ## Installing  
 Simply add the following line to your pubspec.yaml file:  

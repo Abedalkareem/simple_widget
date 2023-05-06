@@ -24,5 +24,6 @@ struct AppWidget: Widget {
     }
                         .configurationDisplayName("AppWidget")
                         .description("This is an example widget :)")
+                        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
   }
 }

@@ -4,43 +4,62 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 class WidgetToImage {
+  ///
   /// Convert the given widget to an image.
+  ///
+  /// More info:
+  /// https://github.com/flutter/flutter/issues/40064
+  ///
   static Future<Uint8List?> dataFromWidget(
     Widget widget, {
     Alignment alignment = Alignment.center,
+    Duration? wait,
     Size size = const Size(double.maxFinite, double.maxFinite),
     double devicePixelRatio = 1.0,
     double pixelRatio = 1.0,
   }) async {
-    RenderRepaintBoundary repaintBoundary = RenderRepaintBoundary();
+    final repaintBoundary = RenderRepaintBoundary();
 
-    RenderView renderView = RenderView(
-      child: RenderPositionedBox(alignment: alignment, child: repaintBoundary),
+    final renderView = RenderView(
+      window: ui.window,
+      child: RenderPositionedBox(
+          alignment: Alignment.center, child: repaintBoundary),
       configuration: ViewConfiguration(
         size: size,
         devicePixelRatio: devicePixelRatio,
       ),
-      window: WidgetsBinding.instance.platformDispatcher.views.first,
     );
 
-    PipelineOwner pipelineOwner = PipelineOwner();
+    final pipelineOwner = PipelineOwner();
+    final buildOwner = BuildOwner(focusManager: FocusManager());
+
     pipelineOwner.rootNode = renderView;
     renderView.prepareInitialFrame();
 
-    BuildOwner buildOwner = BuildOwner(focusManager: FocusManager());
-    RenderObjectToWidgetElement rootElement = RenderObjectToWidgetAdapter(
-      container: repaintBoundary,
-      child: widget,
-    ).attachToRenderTree(buildOwner);
+    final rootElement = RenderObjectToWidgetAdapter<RenderBox>(
+        container: repaintBoundary,
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: widget,
+        )).attachToRenderTree(buildOwner);
+
     buildOwner.buildScope(rootElement);
-    buildOwner.finalizeTree();
 
-    pipelineOwner.flushLayout();
-    pipelineOwner.flushCompositingBits();
-    pipelineOwner.flushPaint();
+    if (wait != null) {
+      await Future.delayed(wait);
+    }
 
-    ui.Image image = await repaintBoundary.toImage(pixelRatio: pixelRatio);
-    ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    buildOwner
+      ..buildScope(rootElement)
+      ..finalizeTree();
+
+    pipelineOwner
+      ..flushLayout()
+      ..flushCompositingBits()
+      ..flushPaint();
+
+    final image = await repaintBoundary.toImage(pixelRatio: pixelRatio);
+    final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
 
     return byteData?.buffer.asUint8List();
   }

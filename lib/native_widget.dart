@@ -1,6 +1,10 @@
 import 'models/timeline.dart';
 import 'native_widget_platform_interface.dart';
 
+export 'util/widget_to_image.dart';
+export 'models/app_widget_data.dart';
+export 'models/timeline.dart';
+
 class NativeWidget {
   /// Listen to the widget clicked events.
   /// The value is the url that the widget clicked on with it's `id`.
@@ -8,9 +12,14 @@ class NativeWidget {
     return NativeWidgetPlatform.instance.widgetClicked;
   }
 
-  /// Update the widgets with the given list.
+  /// Update the timelines with the given list.
   Future updateWidgets(List<TimeLine> list) {
     return NativeWidgetPlatform.instance.updateWidgets(list);
+  }
+
+  /// Get all the [TimeLine].
+  Future<List<TimeLine>> getTimelinesData() {
+    return NativeWidgetPlatform.instance.getTimelinesData();
   }
 
   /// Refresh all the widgets.
@@ -27,12 +36,12 @@ class NativeWidget {
   }
 
   /// Get the url that the app launched with.
-  Future<String?> getLaunchedURL() async {
+  Future<Uri?> getLaunchedURL() async {
     return await NativeWidgetPlatform.instance.getLaunchedURL();
   }
 
   /// Set the app scheme.
-  /// You should also set the same scheme on the native size `Settings` class.
+  /// You should also set the same scheme on the native side `Settings` class.
   Future setAppScheme(String appScheme) async {
     await NativeWidgetPlatform.instance.setAppScheme(appScheme);
   }

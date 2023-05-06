@@ -1,4 +1,4 @@
-package com.example.native_widget_example
+package com.jordanstudio.widget_maker
 
 data class AppWidgetData(
   val date: Long,

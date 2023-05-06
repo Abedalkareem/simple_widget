@@ -10,7 +10,7 @@ import WidgetKit
 struct Provider: IntentTimelineProvider {
 
   func placeholder(in context: Context) -> AppWidgetEntry {
-    if let widget = AppUserDefaults.shared.getTimelines().first?.data.first {
+    if let widget = Storage.shared.getTimelines().first?.data.first {
       let entry = AppWidgetEntry(date: Date(), configuration: SelectWidgetIntent(), appWidgetData: widget)
       return entry
     } else {
@@ -19,7 +19,7 @@ struct Provider: IntentTimelineProvider {
   }
 
   func getSnapshot(for configuration: SelectWidgetIntent, in context: Context, completion: @escaping (AppWidgetEntry) -> ()) {
-    if let widget = AppUserDefaults.shared.getTimelines().first?.data.first {
+    if let widget = Storage.shared.getTimelines().first?.data.first {
       let entry = AppWidgetEntry(date: Date(), configuration: configuration, appWidgetData: widget)
       completion(entry)
     } else {
@@ -32,7 +32,7 @@ struct Provider: IntentTimelineProvider {
 
 
     let type = configuration.type?.type
-    let timelineData = AppUserDefaults.shared.getTimelines().first(where: { $0.type == type }) ?? AppUserDefaults.shared.getTimelines().first
+    let timelineData = Storage.shared.getTimelines().first(where: { $0.type == type }) ?? Storage.shared.getTimelines().first
     // Generate a timeline consisting of five entries an hour apart, starting from the current date.
 
     if let timelineData {
