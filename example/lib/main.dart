@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:native_widget/native_widget.dart';
+import 'package:timelined_native_widget/native_widget.dart';
 import 'package:native_widget_example/game_widget_example.dart';
 import 'package:native_widget_example/multiple_types_example.dart';
 import 'package:native_widget_example/one_widget_example.dart';

@@ -1,7 +1,7 @@
-name: native_widget
-description: A new Flutter plugin project.
+name: timelined_native_widget
+description: Create a native timelined home widget with flutter widgets!
 version: 0.0.1
-homepage:
+repository: https://github.com/Abedalkareem/native_widget
 
 environment:
   sdk: '>=2.19.6 <3.0.0'

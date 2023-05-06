@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:native_widget/native_widget.dart';
+import 'package:timelined_native_widget/native_widget.dart';
 
 class WidgetFromScreenExample extends StatefulWidget {
   const WidgetFromScreenExample({super.key});

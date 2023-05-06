@@ -1,4 +1,4 @@
-import 'package:native_widget/models/app_widget_data.dart';
+import 'package:timelined_native_widget/models/app_widget_data.dart';
 
 /// A data that represents a timeline of widgets.
 class TimeLine {

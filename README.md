@@ -1,4 +1,4 @@
-[![pub package](https://img.shields.io/pub/v/native_widget.svg)](https://pub.dartlang.org/packages/native_widget)
+[![pub package](https://img.shields.io/pub/v/timelined_native_widget.svg)](https://pub.dartlang.org/packages/timelined_native_widget)
 <a href="https://www.buymeacoffee.com/akdebuging" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 20px !important;width: 100px !important;" > </a>
 [![Telegram](https://img.shields.io/badge/chat-telegram-0088cc)](https://t.me/+NvUXzshmIg44N2M0)
 [![Youtube](https://img.shields.io/badge/subscribe-youtube-c4302b)](https://www.youtube.com/@AkDebuging)
@@ -23,7 +23,7 @@ You can check these apps to have an idea about how this plugin can be used:
 
 ## Getting Started
 
-Please check the docs folder.
+Please check the doc folder.
 
 ## How does it work?
 
@@ -33,7 +33,7 @@ This plugin is for you if you want to create a timelined widgets, timelined widg
 Simply add the following line to your pubspec.yaml file:  
 ``` yaml
 dependencies:
-  native_widget: any       # <-- Add this line
+  timelined_native_widget: any       # <-- Add this line
 ```
 
 ## Support me 🚀  
