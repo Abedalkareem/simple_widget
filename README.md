@@ -1,5 +1,4 @@
 [![pub package](https://img.shields.io/pub/v/timelined_native_widget.svg)](https://pub.dartlang.org/packages/timelined_native_widget)
-<a href="https://www.buymeacoffee.com/akdebuging" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 20px !important;width: 100px !important;" > </a>
 [![Telegram](https://img.shields.io/badge/chat-telegram-0088cc)](https://t.me/+NvUXzshmIg44N2M0)
 [![Youtube](https://img.shields.io/badge/subscribe-youtube-c4302b)](https://www.youtube.com/@AkDebuging)
 [![Twitter](https://img.shields.io/badge/follow-twitter-00acee)](https://twitter.com/akdebuging) [![Apps](https://img.shields.io/badge/apps-ios-eeeeee)](https://apps.apple.com/us/developer/abedalkareem-omreyh/id928910207) [![Apps-Android](https://img.shields.io/badge/apps-android-3DDC84)](https://play.google.com/store/apps/dev?id=7470619810055517011)
@@ -11,19 +10,20 @@ Create a native timelined home widget with flutter widgets!
 ## Screenshots  
 ### iOS  
 
-<center><img src="images/ios_screenshot_1.png" width="200"/> <img src="images/ios_screenshot_2.png" width="200"/></center>
+<center><img src="https://raw.githubusercontent.com/Abedalkareem/native_widget/main/images/ios_screenshot_1.png" width="200"/> <img src="https://raw.githubusercontent.com/Abedalkareem/native_widget/main/images/ios_screenshot_2.png" width="200"/></center>
 
 ### Android  
 
-<center><img src="images/android_screenshot_1.png" width="200"/> <img src="images/android_screenshot_2.png" width="200"/></center>
+<center><img src="https://raw.githubusercontent.com/Abedalkareem/native_widget/main/images/android_screenshot_1.png" width="200"/> <img src="https://raw.githubusercontent.com/Abedalkareem/native_widget/main/images/android_screenshot_2.png" width="200"/></center>
 
-## Apps used this plugin
+## Apps using this plugin
 You can check these apps to have an idea about how this plugin can be used:
-- Widget Maker [iOS](https://apps.apple.com/sa/app/widget-maker-create-widgets/id6448733153) [Android](https://play.google.com/store/apps/details?id=com.jordanstudio.widget_maker)
+- Widget Maker: An app that let you create your own custom widgets.  
+ Download for [iOS](https://apps.apple.com/sa/app/widget-maker-create-widgets/id6448733153) or [Android](https://play.google.com/store/apps/details?id=com.jordanstudio.widget_maker)
 
 ## Getting Started
 
-Please check the doc folder.
+Please check the doc folder for detailed instructions about how to use the plugin.
 
 ## How does it work?
 
