@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:native_widget_example/off_topic/widget_viewer_item.dart';
 import 'package:timelined_native_widget/native_widget.dart';
 
