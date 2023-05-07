@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:timelined_native_widget/native_widget.dart';
 
+import 'off_topic/app_button.dart';
+
 class MultipleTypesExample extends StatefulWidget {
   const MultipleTypesExample({super.key});
 
@@ -15,32 +17,27 @@ class _MultipleTypesExampleState extends State<MultipleTypesExample> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.red,
-        appBarTheme: const AppBarTheme(
-          color: Colors.red,
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Multiple types example'),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Multiple types example'),
-        ),
-        body: Center(
+      body: Container(
+        color: Colors.white,
+        child: Center(
             child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ElevatedButton(
+            AppButton(
               onPressed: () async {
                 _updateWidgets();
               },
-              child: const Text("Update Widgets"),
+              text: "Add Widgets",
             ),
-            ElevatedButton(
+            AppButton(
               onPressed: () async {
                 _refreshWidgets();
               },
-              child: const Text("Refresh Widgets"),
+              text: "Refresh Widgets",
             ),
           ],
         )),
@@ -54,16 +51,18 @@ class _MultipleTypesExampleState extends State<MultipleTypesExample> {
 
   Future<void> _updateWidgets() async {
     const firstTimelineID = "1";
-    const secondTimelineID = "1";
+    const secondTimelineID = "2";
+
+    final allTimelines = await _nativeWidgetPlugin.getTimelinesData();
 
     final firstTimeline = await _getFirstTimeline(firstTimelineID);
     final secondTimeline = await _getSecondTimeline(secondTimelineID);
-    await _nativeWidgetPlugin.updateWidgets(
-      [
-        TimeLine(type: "Images", id: firstTimelineID, data: firstTimeline),
-        TimeLine(type: "Color", id: secondTimelineID, data: secondTimeline),
-      ],
-    );
+
+    allTimelines.addAll([
+      TimeLine(type: "Images", id: firstTimelineID, data: firstTimeline),
+      TimeLine(type: "Color", id: secondTimelineID, data: secondTimeline),
+    ]);
+    await _nativeWidgetPlugin.updateWidgets(allTimelines);
     await _nativeWidgetPlugin.refresh();
   }
 

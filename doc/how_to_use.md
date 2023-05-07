@@ -72,6 +72,32 @@ After you have the list of widget, you can create a time line.
   }
 ```
 
+## Select a widget to show
+
+On iOS:
+- Add a new widget from the app by tapping on the add button on the top right side of the screen.
+- Go back to your device home screen and long press on the screen.
+- Tap on the add button on the top left side of the screen.
+- Long press on the app home widget and drop it on the home screen.
+- Long press on the widget you just added and then select Edit Widget.
+- Tap on the Type.
+- Select the widget you want to set.
+
+On Android:
+- Add a new widget from the app by tapping on the add button on the top right side of the screen.
+- Go back to your device home screen and long press on the screen.
+- Tap on Widgets.
+- Expand the app.
+- Long press on the widget you want to add and drop it on the home screen.
+- You can resize the widget by long pressing on it and then drag the corners to resize it.
+- Tap on the widget to open the app in the selection mode.
+- Select the widget you want to set.
+
+## Refresh rate
+
+- For iOS, the refresh rate is 15 minutes.
+- For Android, the refresh rate is 30 minutes.
+
 ## More examples
 
 To see more examples check the example folder in the plugin repo.

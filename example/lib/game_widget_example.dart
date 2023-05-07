@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:native_widget_example/off_topic/app_button.dart';
 import 'package:timelined_native_widget/native_widget.dart';
 
 class GameWidgetExample extends StatefulWidget {
@@ -15,32 +16,27 @@ class _GameWidgetExampleState extends State<GameWidgetExample> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.red,
-        appBarTheme: const AppBarTheme(
-          color: Colors.red,
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Game widget example'),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Game widget example'),
-        ),
-        body: Center(
+      body: Container(
+        color: Colors.white,
+        child: Center(
             child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ElevatedButton(
+            AppButton(
               onPressed: () async {
                 _updateWidgets();
               },
-              child: const Text("Update Widgets"),
+              text: "Add Widgets",
             ),
-            ElevatedButton(
+            AppButton(
               onPressed: () async {
                 _refreshWidgets();
               },
-              child: const Text("Refresh Widgets"),
+              text: "Refresh Widgets",
             ),
           ],
         )),
@@ -53,11 +49,15 @@ class _GameWidgetExampleState extends State<GameWidgetExample> {
   }
 
   Future<void> _updateWidgets() async {
-    const timelineID = "1";
+    const timelineID = "4";
+
+    final allTimelines = await _nativeWidgetPlugin.getTimelinesData();
 
     final firstTimeline = await _getTimeline(timelineID);
+    allTimelines.add(
+        TimeLine(type: "Game Widget", id: timelineID, data: firstTimeline));
     await _nativeWidgetPlugin.updateWidgets(
-      [TimeLine(type: "Images", id: timelineID, data: firstTimeline)],
+      allTimelines,
     );
     await _nativeWidgetPlugin.refresh();
   }

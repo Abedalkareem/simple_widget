@@ -1,13 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:native_widget_example/update_widget_screen.dart';
-import 'package:native_widget_example/widget_from_screen_example.dart';
+import 'package:flutter/services.dart';
+import 'package:native_widget_example/widgets_screen.dart';
 import 'package:timelined_native_widget/native_widget.dart';
 
+import 'off_topic/app_button.dart';
 import 'game_widget_example.dart';
 import 'multiple_types_example.dart';
 import 'one_widget_example.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.white,
+    statusBarColor: Colors.white,
+    statusBarIconBrightness: Brightness.dark,
+    statusBarBrightness: Brightness.light,
+  ));
   runApp(const MyApp());
 }
 
@@ -43,8 +52,8 @@ class _MyAppState extends State<MyApp> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => UpdateWidgetScreen(
-            id: id ?? "--",
+          builder: (context) => WidgetsScreen(
+            id: id ?? "",
           ),
         ),
       );
@@ -57,9 +66,20 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: Colors.red,
+        colorScheme: const ColorScheme.light(
+          primary: Colors.white,
+          secondary: Colors.black,
+          onPrimary: Colors.white,
+        ),
         appBarTheme: const AppBarTheme(
-          color: Colors.red,
+          color: Colors.white,
+          elevation: 0,
+          foregroundColor: Colors.black,
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 30,
+            fontFamily: "Michelia",
+          ),
         ),
       ),
       home: const HomeScreen(),
@@ -91,6 +111,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _listenForWidgetClicked() {
+    if (Platform.isIOS) {
+      return;
+    }
     _nativeWidgetPlugin.widgetClicked.listen((event) async {
       debugPrint(event.toString());
       final id = event?.queryParameters[
@@ -99,8 +122,8 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => UpdateWidgetScreen(
-            id: id ?? "--",
+          builder: (context) => WidgetsScreen(
+            id: id ?? "",
           ),
         ),
       );
@@ -115,51 +138,56 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Native widget example'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ElevatedButton(
-              onPressed: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const MultipleTypesExample()),
-                );
-              },
-              child: const Text("Multiple types example"),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const OneWidgetExample()),
-                );
-              },
-              child: const Text("One widget example"),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const WidgetFromScreenExample()),
-                );
-              },
-              child: const Text("Widget from screen example"),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const GameWidgetExample()),
-                );
-              },
-              child: const Text("Game widget example"),
-            ),
-          ],
+      body: Container(
+        color: Colors.white,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AppButton(
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MultipleTypesExample()),
+                  );
+                },
+                text: "Multiple types example",
+              ),
+              AppButton(
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const OneWidgetExample()),
+                  );
+                },
+                text: "One widget example",
+              ),
+              AppButton(
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const GameWidgetExample()),
+                  );
+                },
+                text: "Game widget example",
+              ),
+              AppButton(
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WidgetsScreen(
+                              id: '',
+                            )),
+                  );
+                },
+                text: "View widgets",
+              ),
+            ],
+          ),
         ),
       ),
     );

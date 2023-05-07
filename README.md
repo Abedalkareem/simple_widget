@@ -3,7 +3,7 @@
 [![Youtube](https://img.shields.io/badge/subscribe-youtube-c4302b)](https://www.youtube.com/@AkDebuging)
 [![Twitter](https://img.shields.io/badge/follow-twitter-00acee)](https://twitter.com/akdebuging) [![Apps](https://img.shields.io/badge/apps-ios-eeeeee)](https://apps.apple.com/us/developer/abedalkareem-omreyh/id928910207) [![Apps-Android](https://img.shields.io/badge/apps-android-3DDC84)](https://play.google.com/store/apps/dev?id=7470619810055517011)
 
-<center><img src="images/native_widget.png" width="300"/></center>
+<center><img src="https://raw.githubusercontent.com/Abedalkareem/native_widget/main/images/native_widget.png" width="300"/></center>
 
 Create a native timelined home widget with flutter widgets!
 
@@ -21,13 +21,21 @@ You can check these apps to have an idea about how this plugin can be used:
 - Widget Maker: An app that let you create your own custom widgets.  
  Download for [iOS](https://apps.apple.com/sa/app/widget-maker-create-widgets/id6448733153) or [Android](https://play.google.com/store/apps/details?id=com.jordanstudio.widget_maker)
 
+## How does it work?
+
+<img src="https://raw.githubusercontent.com/Abedalkareem/native_widget/main/images/widget.png" width="300"/></center>
+
+This plugin is for you if you want to create a timelined widgets, timelined widgets are calucated and provided to the system ahead of time. 
+
+<img src="https://raw.githubusercontent.com/Abedalkareem/native_widget/main/images/timeline.png" width="800"/></center>
+
+You will convert your Widget to an image and then convert it to base64 string, then you will provide the plugin with the base64 string and the time that you want the widget to be shown.
+
+<img src="https://raw.githubusercontent.com/Abedalkareem/native_widget/main/images/widget_details.png" width="300"/></center>
+
 ## Getting Started
 
 Please check the doc folder for detailed instructions about how to use the plugin.
-
-## How does it work?
-
-This plugin is for you if you want to create a timelined widgets, timelined widgets are calucated and provided to the system ahead of time. And you will be feeding the plugin with base64 images created from your Flutter widgets.
 
 ## Installing  
 Simply add the following line to your pubspec.yaml file:  

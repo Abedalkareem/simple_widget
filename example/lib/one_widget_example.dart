@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:timelined_native_widget/native_widget.dart';
 
+import 'off_topic/app_button.dart';
+
 class OneWidgetExample extends StatefulWidget {
   const OneWidgetExample({super.key});
 
@@ -15,32 +17,27 @@ class _OneWidgetExampleState extends State<OneWidgetExample> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.red,
-        appBarTheme: const AppBarTheme(
-          color: Colors.red,
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('One widget example'),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('One widget example'),
-        ),
-        body: Center(
+      body: Container(
+        color: Colors.white,
+        child: Center(
             child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ElevatedButton(
+            AppButton(
               onPressed: () async {
                 _updateWidgets();
               },
-              child: const Text("Update Widgets"),
+              text: "Add Widgets",
             ),
-            ElevatedButton(
+            AppButton(
               onPressed: () async {
                 _refreshWidgets();
               },
-              child: const Text("Refresh Widgets"),
+              text: "Refresh Widgets",
             ),
           ],
         )),
@@ -53,12 +50,14 @@ class _OneWidgetExampleState extends State<OneWidgetExample> {
   }
 
   Future<void> _updateWidgets() async {
-    const timelineID = "1";
+    const timelineID = "3";
+
+    final allTimelines = await _nativeWidgetPlugin.getTimelinesData();
 
     final firstTimeline = await _getTimeline(timelineID);
-    await _nativeWidgetPlugin.updateWidgets(
-      [TimeLine(type: "Images", id: timelineID, data: firstTimeline)],
-    );
+    allTimelines
+        .add(TimeLine(type: "Images", id: timelineID, data: firstTimeline));
+    await _nativeWidgetPlugin.updateWidgets(allTimelines);
     await _nativeWidgetPlugin.refresh();
   }
 
