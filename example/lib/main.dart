@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:timelined_native_widget/native_widget.dart';
-import 'package:native_widget_example/game_widget_example.dart';
-import 'package:native_widget_example/multiple_types_example.dart';
-import 'package:native_widget_example/one_widget_example.dart';
 import 'package:native_widget_example/update_widget_screen.dart';
 import 'package:native_widget_example/widget_from_screen_example.dart';
+import 'package:timelined_native_widget/native_widget.dart';
+
+import 'game_widget_example.dart';
+import 'multiple_types_example.dart';
+import 'one_widget_example.dart';
 
 void main() {
   runApp(const MyApp());

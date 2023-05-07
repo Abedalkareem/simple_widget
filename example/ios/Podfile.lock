@@ -1,21 +1,21 @@
 PODS:
   - Flutter (1.0.0)
-  - native_widget (0.0.1):
+  - timelined_native_widget (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - native_widget (from `.symlinks/plugins/native_widget/ios`)
+  - timelined_native_widget (from `.symlinks/plugins/timelined_native_widget/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  native_widget:
-    :path: ".symlinks/plugins/native_widget/ios"
+  timelined_native_widget:
+    :path: ".symlinks/plugins/timelined_native_widget/ios"
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  native_widget: d40eb357ff1de83566112febb3c3394682a41b7b
+  timelined_native_widget: 304ab6d5fed9e358b045c8df5adf919d54667c78
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 
