@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:native_widget_example/off_topic/widget_viewer_item.dart';
-import 'package:timelined_native_widget/native_widget.dart';
+import 'package:simple_widget_example/off_topic/widget_viewer_item.dart';
+import 'package:simple_widget/simple_widget.dart';
 
 class WidgetsScreen extends StatefulWidget {
   final String id;
@@ -11,7 +11,7 @@ class WidgetsScreen extends StatefulWidget {
 }
 
 class _WidgetsScreenState extends State<WidgetsScreen> {
-  final _nativeWidget = NativeWidget();
+  final _simpleWidget = SimpleWidget();
   List<TimeLine> timelines = [];
   bool done = false;
 
@@ -23,8 +23,8 @@ class _WidgetsScreenState extends State<WidgetsScreen> {
   }
 
   void _getTimelines() async {
-    await _nativeWidget.setAppScheme("widgets");
-    final timelines = await _nativeWidget.getTimelinesData();
+    await _simpleWidget.setAppScheme("widgets");
+    final timelines = await _simpleWidget.getTimelinesData();
     setState(() {
       this.timelines = timelines;
     });
@@ -103,8 +103,8 @@ class _WidgetsScreenState extends State<WidgetsScreen> {
                               for (var element in item.data) {
                                 element.id = widget.id;
                               }
-                              _nativeWidget.updateWidgets(timelines);
-                              _nativeWidget.refresh();
+                              _simpleWidget.updateWidgets(timelines);
+                              _simpleWidget.refresh();
                               setState(() {
                                 done = true;
                               });

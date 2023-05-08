@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:native_widget_example/widgets_screen.dart';
-import 'package:timelined_native_widget/native_widget.dart';
+import 'package:simple_widget_example/widgets_screen.dart';
+import 'package:simple_widget/simple_widget.dart';
 
 import 'off_topic/app_button.dart';
 import 'game_widget_example.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _nativeWidgetPlugin = NativeWidget();
+  final _simpleWidgetPlugin = SimpleWidget();
 
   @override
   void initState() {
@@ -38,13 +38,13 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _setup() async {
-    await _nativeWidgetPlugin.setGroupID("group.abedalkareem.widgets");
-    await _nativeWidgetPlugin.setAppScheme("widgets");
+    await _simpleWidgetPlugin.setGroupID("group.abedalkareem.widgets");
+    await _simpleWidgetPlugin.setAppScheme("widgets");
     _listenForWidgetClicked();
   }
 
   void _listenForWidgetClicked() {
-    _nativeWidgetPlugin.widgetClicked.listen((event) async {
+    _simpleWidgetPlugin.widgetClicked.listen((event) async {
       debugPrint(event.toString());
       final id = event?.queryParameters[
           "id"]; // You can use this id to update the home widget on android.
@@ -95,7 +95,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _nativeWidgetPlugin = NativeWidget();
+  final _simpleWidgetPlugin = SimpleWidget();
 
   @override
   void initState() {
@@ -105,8 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _setup() async {
-    await _nativeWidgetPlugin.setGroupID("group.abedalkareem.widgets");
-    await _nativeWidgetPlugin.setAppScheme("widgets");
+    await _simpleWidgetPlugin.setGroupID("group.abedalkareem.widgets");
+    await _simpleWidgetPlugin.setAppScheme("widgets");
     _listenForWidgetClicked();
   }
 
@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (Platform.isIOS) {
       return;
     }
-    _nativeWidgetPlugin.widgetClicked.listen((event) async {
+    _simpleWidgetPlugin.widgetClicked.listen((event) async {
       debugPrint(event.toString());
       final id = event?.queryParameters[
           "id"]; // You can use this id to update the home widget on android.
@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Native widget example'),
+        title: const Text('Simple widget example'),
       ),
       body: Container(
         color: Colors.white,

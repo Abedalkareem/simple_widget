@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.native_widget_example">
+    package="com.example.simple_widget_example">
    <application
-        android:label="native_widget_example"
+        android:label="simple_widget_example"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -26,13 +26,13 @@
             </intent-filter>
         </activity>
 
-       <receiver android:name="NativeWidgetProvider"
+       <receiver android:name="SimpleWidgetProvider"
            android:exported="false">
            <intent-filter>
                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
            </intent-filter>
            <meta-data android:name="android.appwidget.provider"
-               android:resource="@xml/native_widget" />
+               android:resource="@xml/simple_widget" />
        </receiver>
 
         <!-- Don't delete the meta-data below.

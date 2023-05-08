@@ -1,4 +1,4 @@
-package com.example.native_widget
+package com.example.simple_widget
 
 import android.app.Activity
 import android.content.Context
@@ -6,7 +6,7 @@ import android.content.Intent
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import com.example.native_widget.methodsFrom
+import com.example.simple_widget.methodsFrom
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -19,7 +19,7 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
 import java.util.concurrent.TimeUnit
 
-class NativeWidgetPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
+class SimpleWidgetPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
   EventChannel.StreamHandler, PluginRegistry.NewIntentListener {
 
   //region Variables
@@ -33,11 +33,11 @@ class NativeWidgetPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
 
   //region FlutterPlugin
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "native_widget")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "simple_widget")
     channel.setMethodCallHandler(this)
 
 
-    eventChannel = EventChannel(flutterPluginBinding.binaryMessenger, "native_widget/events")
+    eventChannel = EventChannel(flutterPluginBinding.binaryMessenger, "simple_widget/events")
     eventChannel.setStreamHandler(this)
     context = flutterPluginBinding.applicationContext
   }

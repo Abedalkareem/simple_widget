@@ -4,15 +4,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'models/timeline.dart';
-import 'native_widget_platform_interface.dart';
+import 'simple_widget_platform_interface.dart';
 
-/// An implementation of [NativeWidgetPlatform] that uses method channels.
-class MethodChannelNativeWidget extends NativeWidgetPlatform {
+/// An implementation of [SimpleWidgetPlatform] that uses method channels.
+class MethodChannelSimpleWidget extends SimpleWidgetPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('native_widget');
+  final methodChannel = const MethodChannel('simple_widget');
   static const EventChannel _eventChannel =
-      EventChannel("native_widget/events");
+      EventChannel("simple_widget/events");
 
   @override
   Stream<Uri?> get widgetClicked {

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:timelined_native_widget/native_widget.dart';
+import 'package:simple_widget/simple_widget.dart';
 
 class WidgetViewerItem extends StatelessWidget {
   final AppWidgetData data;

@@ -1,6 +1,6 @@
-# native_widget_example
+# simple_widget_example
 
-Demonstrates how to use the native_widget plugin.
+Demonstrates how to use the simple_widget plugin.
 
 ## Getting Started
 

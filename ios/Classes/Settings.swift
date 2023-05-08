@@ -1,6 +1,6 @@
 //
 //  Settings.swift
-//  native_widget
+//  simple_widget
 //
 //  Created by abedalkareem omreyh on 09/04/2023.
 //

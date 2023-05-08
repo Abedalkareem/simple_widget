@@ -65,10 +65,10 @@ After you have the list of widget, you can create a time line.
 ```dart
   Future<void> _updateWidgets() async {
     const timelineID = "1";
-    await _nativeWidgetPlugin.updateWidgets(
+    await _simpleWidgetPlugin.updateWidgets(
       [TimeLine(type: "Images", id: timelineID, data: myWidgets)],
     );
-    await _nativeWidgetPlugin.refresh();
+    await _simpleWidgetPlugin.refresh();
   }
 ```
 

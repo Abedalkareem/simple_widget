@@ -1,6 +1,6 @@
 //
 //  Errors.swift
-//  native_widget
+//  simple_widget
 //
 //  Created by abedalkareem omreyh on 11/04/2023.
 //

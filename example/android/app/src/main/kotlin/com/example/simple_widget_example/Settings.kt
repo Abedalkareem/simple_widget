@@ -1,4 +1,4 @@
-package com.example.native_widget_example
+package com.example.simple_widget_example
 
 object Settings {
   var appScheme = "widgets"

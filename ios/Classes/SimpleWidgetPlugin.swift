@@ -2,7 +2,7 @@ import Flutter
 import UIKit
 import WidgetKit
 
-public class NativeWidgetPlugin: NSObject, FlutterPlugin {
+public class SimpleWidgetPlugin: NSObject, FlutterPlugin {
 
   // MARK: - Private Properties
 
@@ -12,11 +12,11 @@ public class NativeWidgetPlugin: NSObject, FlutterPlugin {
   // MARK: -
 
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "native_widget", binaryMessenger: registrar.messenger())
-    let instance = NativeWidgetPlugin()
+    let channel = FlutterMethodChannel(name: "simple_widget", binaryMessenger: registrar.messenger())
+    let instance = SimpleWidgetPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
 
-    let eventChannel = FlutterEventChannel(name: "native_widget/events", binaryMessenger: registrar.messenger())
+    let eventChannel = FlutterEventChannel(name: "simple_widget/events", binaryMessenger: registrar.messenger())
     eventChannel.setStreamHandler(instance)
 
     registrar.addApplicationDelegate(instance)
@@ -68,7 +68,7 @@ public class NativeWidgetPlugin: NSObject, FlutterPlugin {
 
 // MARK: - UIApplication
 
-extension NativeWidgetPlugin {
+extension SimpleWidgetPlugin {
 
   public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [AnyHashable : Any] = [:]) -> Bool {
     guard let url = launchOptions[UIApplication.LaunchOptionsKey.url] as? URL else {
@@ -98,7 +98,7 @@ extension NativeWidgetPlugin {
 
 // MARK: - FlutterStreamHandler
 
-extension NativeWidgetPlugin: FlutterStreamHandler {
+extension SimpleWidgetPlugin: FlutterStreamHandler {
   public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
     eventSink = events
     return nil

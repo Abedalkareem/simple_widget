@@ -1,30 +1,30 @@
 import 'models/timeline.dart';
-import 'native_widget_platform_interface.dart';
+import 'simple_widget_platform_interface.dart';
 
 export 'util/widget_to_image.dart';
 export 'models/app_widget_data.dart';
 export 'models/timeline.dart';
 
-class NativeWidget {
+class SimpleWidget {
   /// Listen to the widget clicked events.
   /// The value is the url that the widget clicked on with it's `id`.
   Stream<Uri?> get widgetClicked {
-    return NativeWidgetPlatform.instance.widgetClicked;
+    return SimpleWidgetPlatform.instance.widgetClicked;
   }
 
   /// Update the timelines with the given list.
   Future updateWidgets(List<TimeLine> list) {
-    return NativeWidgetPlatform.instance.updateWidgets(list);
+    return SimpleWidgetPlatform.instance.updateWidgets(list);
   }
 
   /// Get all the [TimeLine].
   Future<List<TimeLine>> getTimelinesData() {
-    return NativeWidgetPlatform.instance.getTimelinesData();
+    return SimpleWidgetPlatform.instance.getTimelinesData();
   }
 
   /// Refresh all the widgets.
   Future refresh() {
-    return NativeWidgetPlatform.instance.refresh();
+    return SimpleWidgetPlatform.instance.refresh();
   }
 
   /// Set the group id of the app.
@@ -32,17 +32,17 @@ class NativeWidget {
   /// You should also set the same group id on the native size `Settings` class.
   /// **Note**: This is required just on iOS.
   Future setGroupID(String groupID) async {
-    await NativeWidgetPlatform.instance.setGroupID(groupID);
+    await SimpleWidgetPlatform.instance.setGroupID(groupID);
   }
 
   /// Get the url that the app launched with.
   Future<Uri?> getLaunchedURL() async {
-    return await NativeWidgetPlatform.instance.getLaunchedURL();
+    return await SimpleWidgetPlatform.instance.getLaunchedURL();
   }
 
   /// Set the app scheme.
   /// You should also set the same scheme on the native side `Settings` class.
   Future setAppScheme(String appScheme) async {
-    await NativeWidgetPlatform.instance.setAppScheme(appScheme);
+    await SimpleWidgetPlatform.instance.setAppScheme(appScheme);
   }
 }

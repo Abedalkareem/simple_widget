@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:timelined_native_widget/native_widget.dart';
+import 'package:simple_widget/simple_widget.dart';
 
 import 'off_topic/app_button.dart';
 
@@ -13,7 +13,7 @@ class OneWidgetExample extends StatefulWidget {
 }
 
 class _OneWidgetExampleState extends State<OneWidgetExample> {
-  final _nativeWidgetPlugin = NativeWidget();
+  final _simpleWidgetPlugin = SimpleWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -46,24 +46,24 @@ class _OneWidgetExampleState extends State<OneWidgetExample> {
   }
 
   void _refreshWidgets() async {
-    await _nativeWidgetPlugin.refresh();
+    await _simpleWidgetPlugin.refresh();
   }
 
   Future<void> _updateWidgets() async {
     const timelineID = "3";
 
-    final allTimelines = await _nativeWidgetPlugin.getTimelinesData();
+    final allTimelines = await _simpleWidgetPlugin.getTimelinesData();
 
     final firstTimeline = await _getTimeline(timelineID);
     allTimelines
         .add(TimeLine(type: "Images", id: timelineID, data: firstTimeline));
-    await _nativeWidgetPlugin.updateWidgets(allTimelines);
-    await _nativeWidgetPlugin.refresh();
+    await _simpleWidgetPlugin.updateWidgets(allTimelines);
+    await _simpleWidgetPlugin.refresh();
   }
 
   Future<List<AppWidgetData>> _getTimeline(String id) async {
     final background1 = await imageBackground("assets/images/cat.png");
-    final foreground1 = await forground("Native Widget");
+    final foreground1 = await forground("Simple Widget");
     final background2 = await imageBackground("assets/images/city.png");
     final foreground2 = await forground("Hello Flutter");
     final background3 = await imageBackground("assets/images/green.png");

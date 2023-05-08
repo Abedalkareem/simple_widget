@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:native_widget_example/off_topic/app_button.dart';
-import 'package:timelined_native_widget/native_widget.dart';
+import 'package:simple_widget_example/off_topic/app_button.dart';
+import 'package:simple_widget/simple_widget.dart';
 
 class GameWidgetExample extends StatefulWidget {
   const GameWidgetExample({super.key});
@@ -12,7 +12,7 @@ class GameWidgetExample extends StatefulWidget {
 }
 
 class _GameWidgetExampleState extends State<GameWidgetExample> {
-  final _nativeWidgetPlugin = NativeWidget();
+  final _simpleWidgetPlugin = SimpleWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -45,21 +45,21 @@ class _GameWidgetExampleState extends State<GameWidgetExample> {
   }
 
   void _refreshWidgets() async {
-    await _nativeWidgetPlugin.refresh();
+    await _simpleWidgetPlugin.refresh();
   }
 
   Future<void> _updateWidgets() async {
     const timelineID = "4";
 
-    final allTimelines = await _nativeWidgetPlugin.getTimelinesData();
+    final allTimelines = await _simpleWidgetPlugin.getTimelinesData();
 
     final firstTimeline = await _getTimeline(timelineID);
     allTimelines.add(
         TimeLine(type: "Game Widget", id: timelineID, data: firstTimeline));
-    await _nativeWidgetPlugin.updateWidgets(
+    await _simpleWidgetPlugin.updateWidgets(
       allTimelines,
     );
-    await _nativeWidgetPlugin.refresh();
+    await _simpleWidgetPlugin.refresh();
   }
 
   Future<List<AppWidgetData>> _getTimeline(String id) async {

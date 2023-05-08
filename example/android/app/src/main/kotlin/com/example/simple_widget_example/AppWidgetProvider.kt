@@ -1,4 +1,4 @@
-package com.example.native_widget_example
+package com.example.simple_widget_example
 
 import android.app.Activity
 import android.app.PendingIntent
@@ -13,7 +13,7 @@ import android.os.Build
 import android.util.Base64
 import android.widget.RemoteViews
 
-class NativeWidgetProvider : AppWidgetProvider() {
+class SimpleWidgetProvider : AppWidgetProvider() {
 
   override fun onUpdate(
     context: Context,

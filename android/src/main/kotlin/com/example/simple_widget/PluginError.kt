@@ -1,4 +1,4 @@
-package com.example.native_widget
+package com.example.simple_widget
 
 enum class PluginError {
   WrongArguments, NotImplemented, NoWidgetFound
@@ -41,7 +41,7 @@ fun PluginError.details(): String {
       "Method not implemented"
     }
     PluginError.NoWidgetFound -> {
-      "No widget found, Make sure you added the `NativeWidgetProvider` in your app"
+      "No widget found, Make sure you added the `SimpleWidgetProvider` in your app"
     }
   }
 }

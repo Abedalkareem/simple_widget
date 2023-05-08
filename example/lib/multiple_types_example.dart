@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:timelined_native_widget/native_widget.dart';
+import 'package:simple_widget/simple_widget.dart';
 
 import 'off_topic/app_button.dart';
 
@@ -13,7 +13,7 @@ class MultipleTypesExample extends StatefulWidget {
 }
 
 class _MultipleTypesExampleState extends State<MultipleTypesExample> {
-  final _nativeWidgetPlugin = NativeWidget();
+  final _simpleWidgetPlugin = SimpleWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +46,14 @@ class _MultipleTypesExampleState extends State<MultipleTypesExample> {
   }
 
   void _refreshWidgets() async {
-    await _nativeWidgetPlugin.refresh();
+    await _simpleWidgetPlugin.refresh();
   }
 
   Future<void> _updateWidgets() async {
     const firstTimelineID = "1";
     const secondTimelineID = "2";
 
-    final allTimelines = await _nativeWidgetPlugin.getTimelinesData();
+    final allTimelines = await _simpleWidgetPlugin.getTimelinesData();
 
     final firstTimeline = await _getFirstTimeline(firstTimelineID);
     final secondTimeline = await _getSecondTimeline(secondTimelineID);
@@ -62,13 +62,13 @@ class _MultipleTypesExampleState extends State<MultipleTypesExample> {
       TimeLine(type: "Images", id: firstTimelineID, data: firstTimeline),
       TimeLine(type: "Color", id: secondTimelineID, data: secondTimeline),
     ]);
-    await _nativeWidgetPlugin.updateWidgets(allTimelines);
-    await _nativeWidgetPlugin.refresh();
+    await _simpleWidgetPlugin.updateWidgets(allTimelines);
+    await _simpleWidgetPlugin.refresh();
   }
 
   Future<List<AppWidgetData>> _getFirstTimeline(String id) async {
     final background1 = await imageBackground("assets/images/cat.png");
-    final foreground1 = await forground("Native Widget");
+    final foreground1 = await forground("Simple Widget");
     final background2 = await imageBackground("assets/images/city.png");
     final foreground2 = await forground("Hello Flutter");
     final background3 = await imageBackground("assets/images/green.png");
@@ -100,7 +100,7 @@ class _MultipleTypesExampleState extends State<MultipleTypesExample> {
 
   Future<List<AppWidgetData>> _getSecondTimeline(String id) async {
     final background1 = await colorBackground(Colors.red);
-    final foreground1 = await forground("Native Widget");
+    final foreground1 = await forground("Simple Widget");
     final background2 = await colorBackground(Colors.blue);
     final foreground2 = await forground("Hello Flutter");
     final background3 = await colorBackground(Colors.green);

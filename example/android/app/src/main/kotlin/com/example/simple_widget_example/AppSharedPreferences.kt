@@ -1,4 +1,4 @@
-package com.example.native_widget_example
+package com.example.simple_widget_example
 
 import android.content.Context
 import com.google.gson.Gson

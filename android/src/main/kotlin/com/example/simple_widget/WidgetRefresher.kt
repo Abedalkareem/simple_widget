@@ -1,4 +1,4 @@
-package com.example.native_widget
+package com.example.simple_widget
 
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
@@ -9,7 +9,7 @@ import io.flutter.plugin.common.MethodChannel
 object WidgetRefresher {
 
   fun refresh(context: Context, result: MethodChannel.Result? = null) {
-    val className = "NativeWidgetProvider"
+    val className = "SimpleWidgetProvider"
     try {
       val javaClass = Class.forName("${context.packageName}.${className}")
       val intent = Intent(context, javaClass)

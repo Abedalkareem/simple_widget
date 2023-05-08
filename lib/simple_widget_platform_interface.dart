@@ -1,25 +1,25 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'models/timeline.dart';
-import 'native_widget_method_channel.dart';
+import 'simple_widget_method_channel.dart';
 
-abstract class NativeWidgetPlatform extends PlatformInterface {
-  /// Constructs a NativeWidgetPlatform.
-  NativeWidgetPlatform() : super(token: _token);
+abstract class SimpleWidgetPlatform extends PlatformInterface {
+  /// Constructs a SimpleWidgetPlatform.
+  SimpleWidgetPlatform() : super(token: _token);
 
   static final Object _token = Object();
 
-  static NativeWidgetPlatform _instance = MethodChannelNativeWidget();
+  static SimpleWidgetPlatform _instance = MethodChannelSimpleWidget();
 
-  /// The default instance of [NativeWidgetPlatform] to use.
+  /// The default instance of [SimpleWidgetPlatform] to use.
   ///
-  /// Defaults to [MethodChannelNativeWidget].
-  static NativeWidgetPlatform get instance => _instance;
+  /// Defaults to [MethodChannelSimpleWidget].
+  static SimpleWidgetPlatform get instance => _instance;
 
   /// Platform-specific implementations should set this with their own
-  /// platform-specific class that extends [NativeWidgetPlatform] when
+  /// platform-specific class that extends [SimpleWidgetPlatform] when
   /// they register themselves.
-  static set instance(NativeWidgetPlatform instance) {
+  static set instance(SimpleWidgetPlatform instance) {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }

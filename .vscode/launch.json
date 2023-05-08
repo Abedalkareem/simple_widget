@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "native_widget",
+            "name": "simple_widget",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "native_widget (profile mode)",
+            "name": "simple_widget (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "native_widget (release mode)",
+            "name": "simple_widget (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

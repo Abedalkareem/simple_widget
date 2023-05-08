@@ -1,4 +1,4 @@
-group 'com.example.native_widget'
+group 'com.example.simple_widget'
 version '1.0-SNAPSHOT'
 
 buildscript {

@@ -1,9 +1,9 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint native_widget.podspec` to validate before publishing.
+# Run `pod lib lint simple_widget.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'timelined_native_widget'
+  s.name             = 'simple_widget'
   s.version          = '0.0.1'
   s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC

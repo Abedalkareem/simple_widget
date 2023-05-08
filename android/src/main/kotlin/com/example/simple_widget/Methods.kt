@@ -1,4 +1,4 @@
-package com.example.native_widget
+package com.example.simple_widget
 
 enum class Method {
   UpdateWidgets, RefreshWidgets, SetGroupID, GetLaunchedURL, SetAppScheme, GetTimelinesData
