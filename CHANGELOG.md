@@ -1,3 +1,7 @@
+## 0.0.3
+
+* Fix the readme logo file.
+
 ## 0.0.2
 
 * Update the readme.
