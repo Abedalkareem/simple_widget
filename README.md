@@ -10,11 +10,21 @@ Create a native timelined home widget with flutter widgets!
 ## Screenshots  
 ### iOS  
 
-<center><img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/ios_screenshot_1.png" width="100"/> <img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/ios_screenshot_2.png" width="100"/></center>
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/ios_screenshot_1.png" width="100"/></td>
+    <td><img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/ios_screenshot_2.png" width="100"/></td> 
+  </tr>
+</table>
 
 ### Android  
 
-<center><img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/android_screenshot_1.png" width="100"/> <img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/android_screenshot_2.png" width="100"/></center>
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/android_screenshot_1.png" width="100"/></td>
+    <td><img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/android_screenshot_2.png" width="100"/></td> 
+  </tr>
+</table>
 
 ## Apps using this plugin
 You can check these apps to have an idea about how this plugin can be used:
