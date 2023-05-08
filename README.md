@@ -3,18 +3,18 @@
 [![Youtube](https://img.shields.io/badge/subscribe-youtube-c4302b)](https://www.youtube.com/@AkDebuging)
 [![Twitter](https://img.shields.io/badge/follow-twitter-00acee)](https://twitter.com/akdebuging) [![Apps](https://img.shields.io/badge/apps-ios-eeeeee)](https://apps.apple.com/us/developer/abedalkareem-omreyh/id928910207) [![Apps-Android](https://img.shields.io/badge/apps-android-3DDC84)](https://play.google.com/store/apps/dev?id=7470619810055517011)
 
-<center><img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/simple_widget.png" width="300"/></center>
+<center><img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/simple_widget.png" width="200"/></center>
 
 Create a native timelined home widget with flutter widgets!
 
 ## Screenshots  
 ### iOS  
 
-<center><img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/ios_screenshot_1.png" width="200"/> <img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/ios_screenshot_2.png" width="200"/></center>
+<center><img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/ios_screenshot_1.png" width="100"/> <img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/ios_screenshot_2.png" width="100"/></center>
 
 ### Android  
 
-<center><img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/android_screenshot_1.png" width="200"/> <img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/android_screenshot_2.png" width="200"/></center>
+<center><img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/android_screenshot_1.png" width="100"/> <img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/android_screenshot_2.png" width="100"/></center>
 
 ## Apps using this plugin
 You can check these apps to have an idea about how this plugin can be used:
