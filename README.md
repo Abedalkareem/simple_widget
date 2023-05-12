@@ -35,7 +35,7 @@ You can check these apps to have an idea about how this plugin can be used:
 
 <img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/widget.png" width="300"/></center>
 
-This plugin is for you if you want to create a timelined widgets, timelined widgets are calucated and provided to the system ahead of time. 
+This plugin is for you if you want to create a timelined widgets, timelined widgets are calculated and provided to the system ahead of time. 
 
 <img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/timeline.png" width="800"/></center>
 
