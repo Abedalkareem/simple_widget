@@ -12,10 +12,14 @@ class TimeLine {
   /// At least one widget must have the time of the current time.
   final List<AppWidgetData> data;
 
+  /// Optional configuration for re-rendering (e.g. foregroundColor, font, fontSize, widgetType).
+  final Map<String, dynamic>? config;
+
   TimeLine({
     required this.type,
     required this.id,
     required this.data,
+    this.config,
   });
 
   factory TimeLine.fromJson(Map json) {
@@ -26,6 +30,9 @@ class TimeLine {
               ?.map((item) => AppWidgetData.fromJson(item))
               .toList() ??
           [],
+      config: json["config"] != null
+          ? Map<String, dynamic>.from(json["config"])
+          : null,
     );
   }
 
@@ -33,5 +40,6 @@ class TimeLine {
         "type": type,
         "id": id,
         "data": data.map((item) => item.toJson()).toList(),
+        if (config != null) "config": config,
       };
 }

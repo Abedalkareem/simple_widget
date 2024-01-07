@@ -146,6 +146,9 @@ class SimpleWidgetPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
 
   //region NewIntentListener
   override fun onNewIntent(intent: Intent): Boolean {
+    // Update the activity's intent so getLaunchedURL() returns the latest
+    // deep link, not the stale one from the original cold start.
+    activity?.intent = intent
     val value = intent.data?.toString() ?: ""
     if (check(value)) {
       eventSink?.success(value)
