@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:simple_widget/simple_widget.dart';
 
@@ -131,7 +129,7 @@ class _MultipleTypesExampleState extends State<MultipleTypesExample> {
   }
 
   Future<String> imageBackground(String image) async {
-    final background = await WidgetToImage.dataFromWidget(
+    final data = await WidgetToImage.dataFromWidget(
       Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
@@ -158,13 +156,11 @@ class _MultipleTypesExampleState extends State<MultipleTypesExample> {
       size: const Size(500, 250),
       wait: const Duration(seconds: 1),
     );
-    String base64Image = base64Encode(background!);
-
-    return base64Image;
+    return await _simpleWidgetPlugin.saveImageFile(data!);
   }
 
   Future<String> colorBackground(Color color) async {
-    final background = await WidgetToImage.dataFromWidget(
+    final data = await WidgetToImage.dataFromWidget(
       Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
@@ -180,13 +176,11 @@ class _MultipleTypesExampleState extends State<MultipleTypesExample> {
       context: context,
       size: const Size(500, 250),
     );
-    String base64Image = base64Encode(background!);
-
-    return base64Image;
+    return await _simpleWidgetPlugin.saveImageFile(data!);
   }
 
   Future<String> forground(String text) async {
-    final background = await WidgetToImage.dataFromWidget(
+    final data = await WidgetToImage.dataFromWidget(
       SizedBox(
         width: 500,
         height: 250,
@@ -218,7 +212,6 @@ class _MultipleTypesExampleState extends State<MultipleTypesExample> {
       context: context,
       size: const Size(500, 250),
     );
-    String base64Image = base64Encode(background!);
-    return base64Image;
+    return await _simpleWidgetPlugin.saveImageFile(data!);
   }
 }

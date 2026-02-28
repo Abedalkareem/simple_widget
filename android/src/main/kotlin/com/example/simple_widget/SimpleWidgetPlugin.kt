@@ -77,6 +77,7 @@ class SimpleWidgetPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
         result.success(null)
       }
       Method.GetTimelinesData -> {
+        MigrationHelper.migrateBase64ToFiles(context)
         result.success(AppSharedPreferences.getTimelinesData(context))
       }
       Method.RefreshWidgets -> {
@@ -105,6 +106,50 @@ class SimpleWidgetPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
         }
         Settings.appScheme = arguments
         result.success(null)
+      }
+      Method.SaveImageFile -> {
+        val arguments = call.arguments as? Map<*, *>
+        if (arguments == null) {
+          result.error(
+            PluginError.WrongArguments.code(),
+            PluginError.WrongArguments.message(),
+            PluginError.WrongArguments.details()
+          )
+          return
+        }
+        val bytes = arguments["bytes"] as? ByteArray
+        if (bytes == null) {
+          result.error(
+            PluginError.WrongArguments.code(),
+            PluginError.WrongArguments.message(),
+            PluginError.WrongArguments.details()
+          )
+          return
+        }
+        val filename = arguments["filename"] as? String
+        val path = ImageFileManager.saveImage(context, bytes, filename)
+        result.success(path)
+      }
+      Method.DeleteImageFiles -> {
+        val arguments = call.arguments as? List<*>
+        if (arguments == null) {
+          result.error(
+            PluginError.WrongArguments.code(),
+            PluginError.WrongArguments.message(),
+            PluginError.WrongArguments.details()
+          )
+          return
+        }
+        val paths = arguments.filterIsInstance<String>()
+        ImageFileManager.deleteImages(context, paths)
+        result.success(null)
+      }
+      Method.MigrateToFileStorage -> {
+        val changed = MigrationHelper.migrateBase64ToFiles(context)
+        result.success(changed)
+      }
+      Method.GetImageBasePath -> {
+        result.success(ImageFileManager.getBasePath(context))
       }
     }
   }

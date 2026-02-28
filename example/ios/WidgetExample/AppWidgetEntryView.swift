@@ -19,12 +19,12 @@ struct AppWidgetEntryView : View {
   
   var body: some View {
     let forgroundWidget =
-    Image(uiImage: base64ToImage(base64: entry.appWidgetData.foreground))
+    Image(uiImage: loadImage(entry.appWidgetData.foreground))
       .resizable()
       .scaledToFit()
       .widgetURL(URL(string: "\(Settings.appScheme)://data?id=\(entry.appWidgetData.id)"))
-    
-    let backgroundWidget = Image(uiImage: base64ToImage(base64: entry.appWidgetData.background))
+
+    let backgroundWidget = Image(uiImage: loadImage(entry.appWidgetData.background))
       .resizable()
       .scaledToFill()
     
@@ -41,9 +41,18 @@ struct AppWidgetEntryView : View {
   }
   
   // MARK: -
-  
-  private func base64ToImage(base64: String) -> UIImage {
-    UIImage(data: Data(base64Encoded: base64) ?? .init()) ?? .init()
+
+  private func loadImage(_ value: String) -> UIImage {
+    if value.hasPrefix("widget_images/") {
+      if let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Settings.groupId) {
+        let fileURL = containerURL.appendingPathComponent(value)
+        if let data = try? Data(contentsOf: fileURL) {
+          return UIImage(data: data) ?? .init()
+        }
+      }
+      return .init()
+    }
+    return UIImage(data: Data(base64Encoded: value) ?? .init()) ?? .init()
   }
 }
 

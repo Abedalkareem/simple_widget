@@ -38,6 +38,7 @@ public class SimpleWidgetPlugin: NSObject, FlutterPlugin {
       Storage.shared.save(arguments)
       result(nil)
     case .getTimelinesData:
+      let _ = MigrationHelper.shared.migrateBase64ToFiles()
       result(Storage.shared.getTimelinesData())
     case .refreshWidgets:
       if #available(iOS 14.0, *) {
@@ -62,6 +63,30 @@ public class SimpleWidgetPlugin: NSObject, FlutterPlugin {
       result(nil)
     case .getLaunchedURL:
       result(launchOptionsURL)
+    case .saveImageFile:
+      guard let arguments = call.arguments as? [String: Any],
+            let bytes = (arguments["bytes"] as? FlutterStandardTypedData)?.data else {
+        result(Errors.wrongArguments)
+        return
+      }
+      let filename = arguments["filename"] as? String
+      if let path = ImageFileManager.shared.saveImage(bytes, filename: filename) {
+        result(path)
+      } else {
+        result(Errors.wrongArguments)
+      }
+    case .deleteImageFiles:
+      guard let paths = call.arguments as? [String] else {
+        result(Errors.wrongArguments)
+        return
+      }
+      ImageFileManager.shared.deleteImages(paths)
+      result(nil)
+    case .migrateToFileStorage:
+      let changed = MigrationHelper.shared.migrateBase64ToFiles()
+      result(changed)
+    case .getImageBasePath:
+      result(ImageFileManager.shared.getBasePath())
     }
   }
 }

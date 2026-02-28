@@ -39,7 +39,7 @@ This plugin is for you if you want to create a timelined widgets, timelined widg
 
 <img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/timeline.png" width="800"/></center>
 
-You will convert your Widget to an image and then convert it to base64 string, then you will provide the plugin with the base64 string and the time that you want the widget to be shown.
+You will convert your Widget to an image and then save it to a file using `saveImageFile()`, then you will provide the plugin with the image file path and the time that you want the widget to be shown.
 
 <img src="https://raw.githubusercontent.com/Abedalkareem/simple_widget/main/images/widget_details.png" width="300"/></center>
 

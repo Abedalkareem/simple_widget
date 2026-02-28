@@ -1,7 +1,8 @@
 package com.example.simple_widget
 
 enum class Method {
-  UpdateWidgets, RefreshWidgets, SetGroupID, GetLaunchedURL, SetAppScheme, GetTimelinesData
+  UpdateWidgets, RefreshWidgets, SetGroupID, GetLaunchedURL, SetAppScheme, GetTimelinesData,
+  SaveImageFile, DeleteImageFiles, MigrateToFileStorage, GetImageBasePath
 }
 
 fun Method.value(): String {

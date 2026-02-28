@@ -48,16 +48,19 @@ class _MyAppState extends State<MyApp> {
       debugPrint(event.toString());
       final id = event?.queryParameters[
           "id"]; // You can use this id to update the home widget on android.
-      // if (Platform.isAndroid) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => WidgetsScreen(
-            id: id ?? "",
+      if (!mounted) {
+        return;
+      }
+      if (Platform.isAndroid) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WidgetsScreen(
+              id: id ?? "",
+            ),
           ),
-        ),
-      );
-      // }
+        );
+      }
       debugPrint(id);
     });
   }

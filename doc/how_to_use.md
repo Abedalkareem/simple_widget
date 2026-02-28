@@ -17,29 +17,31 @@ final myWidgets = [
             .add(const Duration(hours: 0))
             .millisecondsSinceEpoch, //  at least one widget should be created with the current time.
         id,
-        background1Base64,
-        foreground1Base64,
+        backgroundPath1,
+        foregroundPath1,
       ),
       AppWidgetData(
         date.add(const Duration(hours: 2)).millisecondsSinceEpoch,
         id,
-        background2Base64,
-        foreground2Base64,
+        backgroundPath2,
+        foregroundPath2,
       ),
       AppWidgetData(
         date.add(const Duration(hours: 3)).millisecondsSinceEpoch,
         id,
-        background3Base64,
-        foreground3Base64,
+        backgroundPath3,
+        foregroundPath3,
       )
     ];
 ```
 
-The base64 strings above are the images that will be shown in the widget, you can use `WidgetToImage.dataFromWidget()` to get a base64 string from a widget.
+The image paths above are relative file paths returned by `saveImageFile()`. You can use `WidgetToImage.dataFromWidget()` to render a widget to image bytes, then save them to a file using `saveImageFile()`.
 
 ```dart
+  final _simpleWidgetPlugin = SimpleWidget();
+
   Future<String> imageBackground(String image) async {
-    final background = await WidgetToImage.dataFromWidget(
+    final data = await WidgetToImage.dataFromWidget(
       Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
@@ -54,9 +56,7 @@ The base64 strings above are the images that will be shown in the widget, you ca
       size: const Size(500, 250),
       wait: const Duration(seconds: 1),
     );
-    String base64Image = base64Encode(background!);
-
-    return base64Image;
+    return await _simpleWidgetPlugin.saveImageFile(data!);
   }
 ```
 

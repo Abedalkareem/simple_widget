@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:simple_widget_example/off_topic/app_button.dart';
 import 'package:simple_widget/simple_widget.dart';
@@ -100,7 +98,7 @@ class _GameWidgetExampleState extends State<GameWidgetExample> {
   }
 
   Future<String> colorBackground() async {
-    final background = await WidgetToImage.dataFromWidget(
+    final data = await WidgetToImage.dataFromWidget(
       Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
@@ -116,13 +114,11 @@ class _GameWidgetExampleState extends State<GameWidgetExample> {
       context: context,
       size: const Size(500, 250),
     );
-    String base64Image = base64Encode(background!);
-
-    return base64Image;
+    return await _simpleWidgetPlugin.saveImageFile(data!);
   }
 
   Future<String> forground(String text) async {
-    final background = await WidgetToImage.dataFromWidget(
+    final data = await WidgetToImage.dataFromWidget(
       SizedBox(
         width: 500,
         height: 250,
@@ -155,12 +151,11 @@ class _GameWidgetExampleState extends State<GameWidgetExample> {
       context: context,
       size: const Size(500, 250),
     );
-    String base64Image = base64Encode(background!);
-    return base64Image;
+    return await _simpleWidgetPlugin.saveImageFile(data!);
   }
 
   Future<String> fullLivesForground() async {
-    final background = await WidgetToImage.dataFromWidget(
+    final data = await WidgetToImage.dataFromWidget(
       const SizedBox(
         width: 700,
         height: 250,
@@ -200,7 +195,6 @@ class _GameWidgetExampleState extends State<GameWidgetExample> {
       context: context,
       size: const Size(700, 250),
     );
-    String base64Image = base64Encode(background!);
-    return base64Image;
+    return await _simpleWidgetPlugin.saveImageFile(data!);
   }
 }

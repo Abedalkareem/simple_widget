@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Build
 import android.util.Base64
 import android.widget.RemoteViews
+import java.io.File
 
 class SimpleWidgetProvider : AppWidgetProvider() {
 
@@ -43,13 +44,13 @@ class SimpleWidgetProvider : AppWidgetProvider() {
         // Set the widget background
         setImageViewBitmap(
           R.id.backgroundImageView,
-          base64ToBitmap(widgetToShow.background ?: "")
+          loadImage(context, widgetToShow.background ?: "")
         )
 
         // Set the widget foreground
         setImageViewBitmap(
           R.id.foregroundImageView,
-          base64ToBitmap(widgetToShow.foreground ?: "")
+          loadImage(context, widgetToShow.foreground ?: "")
         )
 
         // Open App on Widget Click
@@ -69,8 +70,15 @@ class SimpleWidgetProvider : AppWidgetProvider() {
     super.onReceive(context, intent)
   }
 
-  private fun base64ToBitmap(base64: String): Bitmap {
-    val decodedString = Base64.decode(base64, Base64.DEFAULT)
+  private fun loadImage(context: Context, value: String): Bitmap? {
+    if (value.startsWith("widget_images/")) {
+      val file = File(context.filesDir, value)
+      if (file.exists()) {
+        return BitmapFactory.decodeFile(file.absolutePath)
+      }
+      return null
+    }
+    val decodedString = Base64.decode(value, Base64.DEFAULT)
     return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
   }
 

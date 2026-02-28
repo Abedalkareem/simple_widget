@@ -14,4 +14,8 @@ enum Methods: String {
   case getLaunchedURL
   case setAppScheme
   case getTimelinesData
+  case saveImageFile
+  case deleteImageFiles
+  case migrateToFileStorage
+  case getImageBasePath
 }

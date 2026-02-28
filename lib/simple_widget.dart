@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'models/timeline.dart';
 import 'simple_widget_platform_interface.dart';
 
@@ -44,5 +46,25 @@ class SimpleWidget {
   /// You should also set the same scheme on the native side `Settings` class.
   Future setAppScheme(String appScheme) async {
     await SimpleWidgetPlatform.instance.setAppScheme(appScheme);
+  }
+
+  /// Save image bytes to a file on disk. Returns the relative path.
+  Future<String> saveImageFile(Uint8List bytes, {String? filename}) {
+    return SimpleWidgetPlatform.instance.saveImageFile(bytes, filename: filename);
+  }
+
+  /// Delete image files at the given relative paths.
+  Future<void> deleteImageFiles(List<String> relativePaths) {
+    return SimpleWidgetPlatform.instance.deleteImageFiles(relativePaths);
+  }
+
+  /// Migrate old base64-encoded images to file-based storage.
+  Future<bool> migrateToFileStorage() {
+    return SimpleWidgetPlatform.instance.migrateToFileStorage();
+  }
+
+  /// Get the base directory path for resolving relative image file paths.
+  Future<String> getImageBasePath() {
+    return SimpleWidgetPlatform.instance.getImageBasePath();
   }
 }

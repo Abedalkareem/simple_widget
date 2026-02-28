@@ -8,10 +8,10 @@ class AppWidgetData {
   /// You will get this id when the user click on the home screen widget
   String id;
 
-  /// A base64 encoded image that represents the background of the widget.
+  /// A relative image path that represents the background of the widget.
   final String background;
 
-  /// A base64 encoded image that represents the foreground of the widget.
+  /// A relative image path that represents the foreground of the widget.
   final String foreground;
 
   /// A data that represents a widget in a spesific time.

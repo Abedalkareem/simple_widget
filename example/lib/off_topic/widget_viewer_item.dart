@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:simple_widget/simple_widget.dart';
@@ -44,10 +44,11 @@ class WidgetViewerItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    imageFromBase64String(data.background, BoxFit.cover),
+                    _ImageFromPath(
+                        imagePath: data.background, boxFit: BoxFit.cover),
                     Center(
-                        child: imageFromBase64String(
-                            data.foreground, BoxFit.contain)),
+                        child: _ImageFromPath(
+                            imagePath: data.foreground, boxFit: BoxFit.contain)),
                   ],
                 ),
               ),
@@ -66,10 +67,44 @@ class WidgetViewerItem extends StatelessWidget {
   }
 }
 
-Image imageFromBase64String(String base64String, BoxFit boxFit) {
-  return Image.memory(
-    base64Decode(base64String),
-    fit: boxFit,
-    width: double.infinity,
-  );
+class _ImageFromPath extends StatefulWidget {
+  final String imagePath;
+  final BoxFit boxFit;
+
+  const _ImageFromPath({required this.imagePath, required this.boxFit});
+
+  @override
+  State<_ImageFromPath> createState() => _ImageFromPathState();
+}
+
+class _ImageFromPathState extends State<_ImageFromPath> {
+  late Future<File> _fileFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _fileFuture = _getImageFile();
+  }
+
+  Future<File> _getImageFile() async {
+    final basePath = await SimpleWidget().getImageBasePath();
+    return File('$basePath/${widget.imagePath}');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<File>(
+      future: _fileFuture,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const SizedBox.shrink();
+        }
+        return Image.file(
+          snapshot.data!,
+          fit: widget.boxFit,
+          width: double.infinity,
+        );
+      },
+    );
+  }
 }

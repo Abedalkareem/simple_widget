@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'models/timeline.dart';
@@ -50,5 +52,21 @@ abstract class SimpleWidgetPlatform extends PlatformInterface {
 
   Future setAppScheme(String appScheme) async {
     throw UnimplementedError('setAppScheme() has not been implemented.');
+  }
+
+  Future<String> saveImageFile(Uint8List bytes, {String? filename}) {
+    throw UnimplementedError('saveImageFile() has not been implemented.');
+  }
+
+  Future<void> deleteImageFiles(List<String> relativePaths) {
+    throw UnimplementedError('deleteImageFiles() has not been implemented.');
+  }
+
+  Future<bool> migrateToFileStorage() {
+    throw UnimplementedError('migrateToFileStorage() has not been implemented.');
+  }
+
+  Future<String> getImageBasePath() {
+    throw UnimplementedError('getImageBasePath() has not been implemented.');
   }
 }

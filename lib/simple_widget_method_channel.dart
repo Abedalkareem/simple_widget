@@ -60,4 +60,30 @@ class MethodChannelSimpleWidget extends SimpleWidgetPlatform {
   Future setAppScheme(String appScheme) async {
     await methodChannel.invokeMethod("setAppScheme", appScheme);
   }
+
+  @override
+  Future<String> saveImageFile(Uint8List bytes, {String? filename}) async {
+    final result = await methodChannel.invokeMethod<String>(
+      "saveImageFile",
+      {"bytes": bytes, "filename": filename},
+    );
+    return result!;
+  }
+
+  @override
+  Future<void> deleteImageFiles(List<String> relativePaths) async {
+    await methodChannel.invokeMethod("deleteImageFiles", relativePaths);
+  }
+
+  @override
+  Future<bool> migrateToFileStorage() async {
+    final result = await methodChannel.invokeMethod<bool>("migrateToFileStorage");
+    return result ?? false;
+  }
+
+  @override
+  Future<String> getImageBasePath() async {
+    final result = await methodChannel.invokeMethod<String>("getImageBasePath");
+    return result!;
+  }
 }
