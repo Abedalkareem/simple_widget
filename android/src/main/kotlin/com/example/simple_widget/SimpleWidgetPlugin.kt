@@ -3,6 +3,8 @@ package com.example.simple_widget
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
@@ -17,6 +19,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 class SimpleWidgetPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
@@ -77,8 +80,14 @@ class SimpleWidgetPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
         result.success(null)
       }
       Method.GetTimelinesData -> {
-        MigrationHelper.migrateBase64ToFiles(context)
-        result.success(AppSharedPreferences.getTimelinesData(context))
+        // Migration base64-decodes, hashes and writes every stored image, and
+        // reading the timelines can block on the SharedPreferences load. Both
+        // are far too slow for the platform thread on an account with a large
+        // legacy payload, which showed up in the field as a startup ANR.
+        onBackgroundThread(result) {
+          MigrationHelper.migrateBase64ToFiles(context)
+          AppSharedPreferences.getTimelinesData(context)
+        }
       }
       Method.RefreshWidgets -> {
         WidgetRefresher.refresh(context, result)
@@ -145,8 +154,7 @@ class SimpleWidgetPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
         result.success(null)
       }
       Method.MigrateToFileStorage -> {
-        val changed = MigrationHelper.migrateBase64ToFiles(context)
-        result.success(changed)
+        onBackgroundThread(result) { MigrationHelper.migrateBase64ToFiles(context) }
       }
       Method.GetImageBasePath -> {
         result.success(ImageFileManager.getBasePath(context))
@@ -156,6 +164,26 @@ class SimpleWidgetPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
+  }
+
+  /// Runs [work] off the platform thread and delivers its value back on the
+  /// platform thread, where a MethodChannel result has to be answered.
+  private fun onBackgroundThread(result: Result, work: () -> Any?) {
+    backgroundExecutor.execute {
+      val value = try {
+        work()
+      } catch (t: Throwable) {
+        mainHandler.post {
+          result.error(
+            PluginError.Unknown.code(),
+            t.message ?: PluginError.Unknown.message(),
+            PluginError.Unknown.details()
+          )
+        }
+        return@execute
+      }
+      mainHandler.post { result.success(value) }
+    }
   }
   //endregion
 
@@ -209,3 +237,9 @@ class SimpleWidgetPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
   //endregion
 }
 
+// Migration and the timeline read are the only genuinely slow method calls, and
+// both are one-shot work with no ordering requirement between them, so a single
+// thread keeps them off the platform thread without spawning per call. Process
+// scoped, so repeatedly attaching and detaching an engine cannot leak threads.
+private val backgroundExecutor = Executors.newSingleThreadExecutor()
+private val mainHandler = Handler(Looper.getMainLooper())
