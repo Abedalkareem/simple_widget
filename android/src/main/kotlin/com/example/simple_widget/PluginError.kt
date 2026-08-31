@@ -1,7 +1,7 @@
 package com.example.simple_widget
 
 enum class PluginError {
-  WrongArguments, NotImplemented, NoWidgetFound
+  WrongArguments, NotImplemented, NoWidgetFound, Unknown
 }
 
 fun PluginError.code(): String {
@@ -14,6 +14,9 @@ fun PluginError.code(): String {
     }
     PluginError.NoWidgetFound -> {
       "55"
+    }
+    PluginError.Unknown -> {
+      "99"
     }
   }
 }
@@ -29,6 +32,9 @@ fun PluginError.message(): String {
     PluginError.NoWidgetFound -> {
       "No widget found"
     }
+    PluginError.Unknown -> {
+      "Unexpected error"
+    }
   }
 }
 
@@ -42,6 +48,9 @@ fun PluginError.details(): String {
     }
     PluginError.NoWidgetFound -> {
       "No widget found, Make sure you added the `SimpleWidgetProvider` in your app"
+    }
+    PluginError.Unknown -> {
+      "The method failed with an unexpected error"
     }
   }
 }
