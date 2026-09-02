@@ -68,6 +68,12 @@ class SimpleWidgetPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
         }
         AppSharedPreferences.save(arguments, context)
 
+        // Redraw straight away. The periodic worker below exists to roll a
+        // timeline over to its next dated entry, and leaving the redraw to it
+        // meant a change the user just made sat invisible on the home screen
+        // until that job happened to run.
+        WidgetRefresher.refresh(context)
+
         val widgetUpdateRequest = PeriodicWorkRequestBuilder<WidgetUpdateWorker>(
           30, TimeUnit.MINUTES
         ).build()
